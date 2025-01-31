@@ -21,7 +21,7 @@ export class ProductDetailService implements OnInit {
   }
 
   initializeUser() {
-    this.getUser(1).subscribe(user => this.user = user);
+    this.getUser(2).subscribe(user => this.user = user);
   }
 
   getUser(id : number) : Observable<User> {
@@ -32,8 +32,8 @@ export class ProductDetailService implements OnInit {
   getProduct(id : number) : Observable<Product>{
     return this.http.get<Product>(`${this.productsURL}/${id}`);
   }
-  postProductToCart(item : CartItem){
-    return this.http.post<CartItem>(`${this.cartURL}?user_id=${this.user.id}`, item);
+  postProductToCart(item : CartItem, userId : number){
+    return this.http.post<CartItem>(`${this.cartURL}?user_id=${userId}`, item);
   }
   getProductFromCart(user_id : number){
     return this.http.get<CartItem[]>(`${this.cartURL}?user_id=${user_id}`);

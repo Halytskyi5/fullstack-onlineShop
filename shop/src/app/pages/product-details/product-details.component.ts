@@ -24,13 +24,10 @@ export class ProductDetailsComponent implements OnInit{
   quantity: number = 1;
   ngOnInit() {
     this.getProduct();
-    this.cartSubscription = this.productDetailService.getProductFromCart(this.productDetailService.user.id)
+    this.cartSubscription = this.productDetailService.getProductFromCart(2)
       .subscribe( (data ) => {
       this.cart = data;
     })
-  }
-  sendCartProducts(){
-    this.cartService.sendUpdate(this.cart);
   }
   getProduct(): void{
     const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
@@ -38,6 +35,8 @@ export class ProductDetailsComponent implements OnInit{
       this.product = product;
     })
   }
+
+
   parseData(product : Product){
     this.quantity = parseInt(this.data);
     this.addToCart(product);
@@ -56,31 +55,41 @@ export class ProductDetailsComponent implements OnInit{
         password : ""
       }
     };
-    //product.quantity = this.quantity;
     let findItem;
 
-    if(this.cart.length > 0 ){
-      findItem = this.cart.find( (item) => item.productId === cartItem.productId) // change id
-      if (findItem) this.updateToCart(findItem)
-      else this.postToCart(cartItem);
-    }else this.postToCart(cartItem);
+    if(this.cart.length > 0){
+      findItem = this.cart.find( (item) => item.productId === cartItem.productId);
+      if (findItem){
+        findItem.quantity += cartItem.quantity;
+        this.updateToCart(findItem);
+      }
+      else {
+        this.postToCart(cartItem, 2);
+      }
+    }else {
+      this.postToCart(cartItem, 2);
+    }
     alert(`Товар ${product.name} кількістю ${cartItem.quantity} шт успішно добавлено в корзину!`)
   }
-  postToCart(product : CartItem){
-    this.productDetailService.postProductToCart(product).subscribe( (data) =>
-      this.cart.push(data)
+  postToCart(product : CartItem, userId : number){
+    this.productDetailService.postProductToCart(product ,userId).subscribe( (data) => {
+        this.cart.push(data)
+      }
     );
   }
   updateToCart(cartItem : CartItem){
-    cartItem.quantity += this.quantity;
     this.productDetailService.updateProductToCart(cartItem).subscribe( (data) =>{
-      // need put request in api
+      this.cart.map(val => {
+        if(val.id === data.id) {
+          val.quantity = data.quantity;
+        }
+      })
     })
+  }
+  sendCartProducts(){
+    this.cartService.sendUpdate(this.cart);
   }
   ngOnDestroy(){
     if(this.cartSubscription) this.cartSubscription.unsubscribe();
   }
-
-  protected readonly Number = Number;
-  protected readonly parseInt = parseInt;
 }

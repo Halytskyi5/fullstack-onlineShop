@@ -49,7 +49,7 @@ public class CartItemController {
     }
 
     @PutMapping("{id}") //// ??????
-    public ResponseEntity updateCart(@PathVariable Long id, @RequestParam CartItemEntity cartItem) {
+    public ResponseEntity updateCart(@PathVariable Long id, @RequestBody CartItemEntity cartItem) {
         try {
             return ResponseEntity.ok(this.cartService.updateCart(cartItem, id));
         } catch (Exception e) {

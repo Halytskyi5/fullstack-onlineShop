@@ -25,6 +25,9 @@ export class CartComponent implements OnInit{
 
   ngOnInit() {
     this.initializeUserAndProducts();
+    /*this.cartSubscription = this.productDetailService.getProductFromCart().subscribe( (data) =>{
+      this.cart = data;
+    });*/
   }
 
   initializeUserAndProducts() {
