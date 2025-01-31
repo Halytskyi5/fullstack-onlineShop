@@ -23,11 +23,19 @@ export class CartComponent implements OnInit{
   cartSubscription : Subscription;
   totalPrice : number = 0;
 
-  initializeUser() {
-    this.userService.getUser(1).subscribe(
+  ngOnInit() {
+    this.initializeUserAndProducts();
+  }
+
+  initializeUserAndProducts() {
+    this.userService.getUser(2).subscribe(
       user => {
         this.user = user;
-        console.log(this.user)
+        this.cartSubscription = this.productDetailService.getProductFromCart(this.user.id)
+          .subscribe( (data) =>{
+            this.cart = data;
+          });
+        this.getTotalPrice();
       }
     );
   }
@@ -42,25 +50,19 @@ export class CartComponent implements OnInit{
       }
     })
   }
-  ngOnInit() {
-    this.initializeUser();
-    this.cartSubscription = this.productDetailService.getProductFromCart(this.user.id)
-      .subscribe( (data) =>{
-      this.cart = data;
-        console.log(data);
-    });
-    this.getTotalPrice();
-  }
-  ngOnDestroy(){
-    if(this.cartSubscription) this.cartSubscription.unsubscribe();
-  }
+
+
   removeProductFromCart(item : CartItem){
     this.productDetailService.removeProductFromCart(item.id).subscribe( () =>{
       let idx = this.cart.findIndex( (data) => data.id === item.id);
       this.cart.splice(idx, 1);
     })
   }
+
   sendCartProducts(){
     this.cartService.sendUpdate(this.cart);
+  }
+  ngOnDestroy(){
+    if(this.cartSubscription) this.cartSubscription.unsubscribe();
   }
 }

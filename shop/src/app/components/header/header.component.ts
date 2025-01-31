@@ -32,12 +32,10 @@ export class HeaderComponent implements OnInit{
     this.cartSubscription = this.productDetailService.getProductFromCart(2) // !
       .subscribe( (data) =>{
       this.cart = data;
-        console.log(this.cart);
     });
   }
   ngOnDestroy(){
     if(this.cartSubscription) this.cartSubscription.unsubscribe();
     this.subscriptionCartUpdate.unsubscribe();
   }
-
 }
