@@ -1,0 +1,73 @@
+<app-header></app-header>
+<main class="container">
+  <div class="container-first-section">
+
+    <!--  first component above-->
+    <main class="content">
+      <div class="information-panel">
+        <div class="news">
+          <h2 class="title-content">Новинки в цьому сезоні!</h2>
+          <p class="content-text">Витончені поєднання та оксамитові відтінки - ось те, що ви шукали цього сезону. Час досліджувати.</p>
+        </div>
+        <div class="buttons-navigation">
+          <a href="#new-collection">
+            <button class="btn-next-section"></button>
+          </a>
+          <a routerLink="/shop">
+            <button class="btn-open-shop">
+              Відкрити магазин
+            </button>
+          </a>
+        </div>
+      </div>
+      <div class="clothes-pictures">
+        <img class="first-stage-photo" src="../../../assets/images/clothes/first-stage-photo.jpg" alt="">
+        <img class="second-stage-photo" src="../../../assets/images/clothes/second-stage-photo.jpg">
+        <img class="third-stage-photo" src="../../../assets/images/clothes/third-stage-photo.jpg">
+      </div>
+    </main>
+  </div>
+  <div class="container-second-section">
+    <h3 id="new-collection" class="general-titles">Нова колекція</h3>
+    <div class="new-collection">
+      <app-product-item [products]="products"></app-product-item>
+    </div>
+    <div class="box-button">
+      <a routerLink="/shop">
+        <button class="open-shop-second-section">Відкрити магазин</button>
+      </a>
+    </div>
+  </div>
+  <div class="good-qualities">
+    <h3 class="general-titles">Що для нас важливо</h3>
+    <div class="good-qualities-sections">
+      <section class="quality-section">
+        <img class="img-quality-section" src="../../../assets/images/icons/quality.png" alt="">
+        <h5 class="h5-quality-section">Якість</h5>
+        <span class="text">Наші професіонали працюють на найкращому обладнанні для пошиття одягу найкращої якості</span>
+      </section>
+      <section class="quality-section">
+        <img class="img-quality-section" src="../../../assets/images/icons/speed.png" alt="">
+        <h5 class="h5-quality-section">Швидкість</h5>
+        <span class="text">Завдяки налагодженій системі у Womazing ми можемо відшивати до 20 одиниць продукції у наших власних цехах</span>
+      </section>
+      <section class="quality-section">
+        <img class="img-quality-section" src="../../../assets/images/icons/responsibility.png" alt="">
+        <h5 class="h5-quality-section">Відповідальність</h5>
+        <span class="text">Ми дбаємо про людей та планету. Безвідходне виробництво та комфортні умови праці - все це Womazing</span>
+      </section>
+    </div>
+  </div>
+  <h3 class="general-titles">Команда мрії Womazing</h3>
+  <div class="team-dream">
+    <img class="img-team-dream" src="../../../assets/images/clothes/team-dream.jpg" alt="">
+    <section class="our-information">
+      <h5 class="h5-quality-section">Для кожної</h5>
+      <span class="text">Кожна дівчина є унікальною. Однак, ми схожі на мільйон дрібниць.<br>
+      Womazing шукає ці дрібниці та створює чудові речі, які вигідно підкреслюють переваги кожної дівчини.</span>
+      <br><br>
+      <a class="btn-brand-detail" routerLink="/about-brand">Детальніше про бренд</a>
+    </section>
+  </div>
+</main>
+<app-footer></app-footer>

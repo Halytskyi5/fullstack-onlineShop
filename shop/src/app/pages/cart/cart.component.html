@@ -1,0 +1,48 @@
+<div class="container">
+  <app-header></app-header>
+  <h1 class="title">Корзина</h1>
+  <main class="main" *ngIf="cart.length > 0">
+    <table class="table" >
+      <thead>
+      <tr>
+        <td>Товар</td>
+        <td>Ціна</td>
+        <td>Кількість</td>
+        <td>Всього</td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="products-line" *ngFor="let item of cart">
+        <td class="image-item">
+          <div class="product-information">
+            <img class="delete-btn" src="../../../assets/images/icons/deleteBTN.png" alt="" (click)="removeProductFromCart(item)" (click)="sendCartProducts()">
+            <img class="image" src="../../../assets/images/clothes/{{item.productImage}}" alt="">
+            <p class="product-name">{{item.productName}}</p>
+          </div>
+        </td>
+        <td class="price-item">${{item.productPrice}}</td>
+        <td class="quantity-item">{{item.quantity}}</td>
+        <td class="price-all-items">${{item.productPrice*item.quantity}}</td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="make-on-order">
+        <span class="total-price">
+          <span class="price-text">Всього: ${{totalPrice}} </span>
+        </span>
+        <a routerLink="/order">
+          <button class="btn-make-on-order">Оформити замовлення</button>
+        </a>
+    </div>
+  </main>
+  <main *ngIf="cart.length < 1">
+    <h2 class="h2-empty-cart">Тут ще нічого немає!</h2>
+    <h2 class="h2-empty-cart">Поспіши замовити одяг з нової колекції!</h2>
+    <div class="box-btn">
+      <a routerLink="/shop">
+        <button class="btn-open-shop">Відкрити магазин</button>
+      </a>
+    </div>
+  </main>
+</div>
+<app-footer></app-footer>

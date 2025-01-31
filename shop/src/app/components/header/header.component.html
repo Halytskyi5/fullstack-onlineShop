@@ -1,0 +1,28 @@
+<header class="header">
+  <div class="container">
+    <div class="header-content">
+      <div class="logo">
+        <div class="logo-image">
+          <img class="logo-dress" src="../assets/images/icons/dress.png" alt="logo">
+        </div>
+        <h1 class="logo-title">Womazing</h1>
+      </div>
+      <div class="line-menu">
+        <p class="text-menu"><a class="text-menu-a" routerLink=''>Головна</a></p>
+        <p class="text-menu"><a class="text-menu-a" routerLink='/shop'>Магазин</a></p>
+        <p class="text-menu"><a class="text-menu-a" routerLink='/about-brand'>Про бренд</a></p>
+        <p class="text-menu"><a class="text-menu-a" routerLink='/contacts'>Контакти</a></p>
+      </div>
+      <div class="phone-number-container">
+        <img class="phone-picture" src="../assets/images/icons/phone.png" alt="phone">
+        <p class="text-menu">+38(066)934-42-41</p>
+      </div>
+      <div class="cart">
+        <a class="a-cart" routerLink="/cart">
+          <mat-icon class="cart-picture" matBadge="{{cart.length}}" matBadgeColor="warn" *ngIf="cart.length > 0">shopping_cart</mat-icon>
+          <mat-icon class="cart-picture" *ngIf="cart.length === 0">shopping_cart</mat-icon>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>

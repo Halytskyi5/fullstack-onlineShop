@@ -1,0 +1,96 @@
+<div class="container">
+  <app-header></app-header>
+  <h1 class="title">Оформлення замовлення</h1>
+  <main class="sections-container">
+    <section class="first-section">
+      <form [formGroup]="dataUserForm">
+        <div class="formGroup">
+          <h3 class="h3-title-sections">Дані покупця</h3>
+          <input class="input-form-group" name="name" formControlName="userName" placeholder="Ім'я">
+          <div class="form-error" *ngIf="dataUserForm.controls['userName'].invalid && dataUserForm.controls['userName'].touched">
+            Ім'я не вказано
+          </div>
+        </div>
+        <div class="formGroup">
+          <input class="input-form-group" name="email" formControlName="userEmail" placeholder="Email">
+          <div class="form-error" *ngIf="dataUserForm.controls['userEmail'].invalid && dataUserForm.controls['userEmail'].touched">
+            Неправильний email
+          </div>
+        </div>
+        <div class="formGroup">
+          <input class="input-form-group" name="phone" formControlName="userPhone" placeholder="Телефон">
+          <div class="form-error" *ngIf="dataUserForm.controls['userPhone'].invalid && dataUserForm.controls['userPhone'].touched">
+            Неправильний номер телефону
+          </div>
+        </div>
+      </form>
+      <form [formGroup]="addressUserForm">
+        <div class="formGroup">
+          <h3 class="h3-title-sections">Адреса покупця</h3>
+          <input class="input-form-group" name="country" formControlName="userCountry" placeholder="Країна">
+          <div class="form-error" *ngIf="addressUserForm.controls['userCountry'].invalid && addressUserForm.controls['userCountry'].touched">
+            Країну не вказано
+          </div>
+        </div>
+        <div class="formGroup">
+          <input class="input-form-group" name="city" formControlName="userCity" placeholder="Місто">
+          <div class="form-error" *ngIf="addressUserForm.controls['userCity'].invalid && addressUserForm.controls['userCity'].touched">
+            Місто не вказано
+          </div>
+        </div>
+        <div class="formGroup">
+          <input class="input-form-group" name="street" formControlName="userStreet" placeholder="Вулиця">
+          <div class="form-error" *ngIf="addressUserForm.controls['userStreet'].invalid && addressUserForm.controls['userStreet'].touched">
+            Вулицю не вказано
+          </div>
+        </div>
+        <div class="formGroup">
+          <input class="input-form-group" name="home" formControlName="userHome" placeholder="Будинок">
+          <div class="form-error" *ngIf="addressUserForm.controls['userHome'].invalid && addressUserForm.controls['userHome'].touched">
+            Будинок не вказано
+          </div>
+        </div>
+        <div class="formGroup">
+          <input class="input-form-group" name="apartment" formControlName="userApartment" placeholder="Квартира">
+          <div class="form-error" *ngIf="addressUserForm.controls['userApartment'].invalid && addressUserForm.controls['userApartment'].touched">
+            Квартиру не вказано
+          </div>
+        </div>
+      </form>
+      <h3 class="h3-title-sections">Коментарі до замовлення</h3>
+      <textarea class="comments-order" placeholder="Ваші побажання до замовлення"></textarea>
+    </section>
+    <section class="second-section">
+      <h3 class="h3-title-sections title-second-section">Ваше замовлення</h3>
+      <table class="items-in-order">
+        <thead>
+          <tr>
+            <td class="thead-title">Товар</td>
+            <td class="thead-title">Всього</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of cart">
+            <td class="table-items">{{item.productName}}</td>
+            <td>${{item.productPrice}}</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td class="thead-title">Всього</td>
+            <td class="thead-title">${{totalPrice}}</td>
+          </tr>
+        </tfoot>
+      </table>
+      <div class="formGroup">
+        <a routerLink="/order-success">
+          <button class="btn-forms-group" [disabled]="dataUserForm.invalid || addressUserForm.invalid"
+                  (click)="removeAllProductsFromCart(cart)">
+            Замовити
+          </button>
+        </a>
+      </div>
+    </section>
+  </main>
+</div>
+<app-footer></app-footer>

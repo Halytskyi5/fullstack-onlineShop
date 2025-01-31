@@ -1,0 +1,66 @@
+.container{
+  padding: 10px 145px;
+}
+.section-about{
+  padding-top: 100px;
+  display: flex;
+  gap: 90px;
+}
+.first-section-picture-container{
+  position: relative;
+  overflow: hidden;
+  width: 442px;
+  height: 547px;
+}
+.first-section-picture{
+  position: absolute;
+  width: 647px;
+  height: 981px;
+  left: -72px;
+  top: -336px;
+}
+.section-text{
+  line-height: 1.5;
+  font-size: 17px;
+  font-weight: 500;
+}
+.section-text-container{
+  width: 50%;
+}
+.section-title{
+  font-size: 25px;
+  font-weight: 500;
+  margin-bottom: 46px;
+  margin-top: 120px;
+}
+.second-section-picture{
+  position: absolute;
+  width: 445px;
+  height: 666px;
+  left: 0px;
+  top: -22px;
+}
+.second-section-picture-container{
+  width: 442px;
+  height: 547px;
+  position: relative;
+  overflow: hidden;
+ }
+.btn-about-brand{
+  width: 260px;
+  height: 68px;
+  background-color: #6E9C9F;
+  border: none;
+  cursor: pointer;
+}
+.btn-text{
+  font-size: 17px;
+  font-weight: 400;
+  color: #fff;
+  margin-top: 22px;
+}
+.box-button {
+  margin-top: 80px;
+  margin-bottom: 80px;
+  text-align: center;
+}

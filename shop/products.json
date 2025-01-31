@@ -1,0 +1,97 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Футболка USA",
+      "image": "first-photo-collection.jpg",
+      "price": 99,
+      "quantity": 1
+    },
+    {
+      "id": 2,
+      "name": "Купальник Glow",
+      "image": "second-photo-collection.jpg",
+      "price": 123,
+      "quantity": 1
+    },
+    {
+      "id": 3,
+      "name": "Світшот",
+      "image": "third-photo-collection.jpg",
+      "price": 139,
+      "quantity": 1
+    },
+    {
+      "id": 4,
+      "name": "Пальто",
+      "image": "4-photo-collection.jpg",
+      "price": 990,
+      "quantity": 1
+    },
+    {
+      "id": 5,
+      "name": "Світшот",
+      "image": "5-photo-collection.jpg",
+      "price": 129,
+      "quantity": 1
+    },
+    {
+      "id": 6,
+      "name": "Худі",
+      "image": "6-photo-collection.jpg",
+      "price": 123,
+      "quantity": 1
+    },
+    {
+      "id": 7,
+      "name": "Футболка",
+      "image": "7-photo-collection.jpg",
+      "price": 49,
+      "quantity": 1
+    },
+    {
+      "id": 8,
+      "name": "Футболка UА",
+      "image": "8-photo-collection.jpg",
+      "price": 219,
+      "quantity": 1
+    },
+    {
+      "id": 9,
+      "name": "Футболка Womazing",
+      "image": "9-photo-collection.jpg",
+      "price": 109,
+      "quantity": 1
+    },
+    {
+      "id": 10,
+      "name": "Світшот NSPO",
+      "image": "10-photo-collection.jpg",
+      "price": 439,
+      "quantity": 1
+    },
+    {
+      "id": 11,
+      "name": "Світшот Womazing",
+      "image": "11-photo-collection.jpeg",
+      "price": 299,
+      "quantity": 1
+    },
+    {
+      "id": 12,
+      "name": "Світшот",
+      "image": "12-photo-collection.jpeg",
+      "price": 149,
+      "quantity": 1
+    }
+  ],
+  "cart": [
+    {
+      "id": 12,
+      "name": "Світшот",
+      "image": "12-photo-collection.jpeg",
+      "price": 149,
+      "quantity": 1
+    }
+  ]
+}

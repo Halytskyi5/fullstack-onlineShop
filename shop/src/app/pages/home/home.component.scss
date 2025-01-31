@@ -1,0 +1,207 @@
+//////////////////////////////////////// header
+.container{
+  padding: 10px 245px;
+  padding-bottom: 20px;
+}
+.container-first-section{
+  height: 774px;
+  position: relative;
+  background: linear-gradient(to right, #fff 50%, #F1EADC 50%);
+  //z-index: -2;
+}
+///////////////////////////////////// header
+
+.content{
+  display: flex;
+}
+.information-panel{
+  width: 50%;
+}
+.title-content{
+  font-weight: 500;
+  font-size: 55px;
+  margin-top: 190px;
+}
+.content-text{
+  width: 448px;
+  font-size: 20px;
+  font-weight: 400;
+  text-align: right;
+}
+.buttons-navigation{
+  margin: auto;
+  position: relative;
+  width: 400px;
+  top: 40px;
+}
+.btn-next-section{
+  height: 67px;
+  width: 67px;
+  background-image: url("../../../assets/images/icons/arrow-down.png");
+  background-repeat: no-repeat;
+  border: none;
+  // background-color: #fff;
+  background-position: center;
+  cursor: pointer;
+}
+.btn-open-shop{
+  position: absolute;
+  top: 0;
+  width: 243px;
+  height: 67px;
+  border: none;
+  cursor: pointer;
+  background-color: #6E9C9F;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 400;
+  text-align: center;
+}
+.clothes-pictures{
+  width: 50%;
+  position: relative;
+  top: 20px;
+}
+.first-stage-photo{
+  width: 434px;
+  height: 652px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
+}
+.second-stage-photo{
+  width: 197px;
+  //height: 197px;
+  position: absolute;
+  top: 125px;
+  right: -82px;
+  z-index: 2;
+}
+.third-stage-photo{
+  position: absolute;
+  width: 190px;
+  height: 318px;
+  left: -28px;
+  top: 375px;
+  z-index: 3;
+}
+////////////////////////////////// content
+.container-second-section{
+  padding-top: 60px;
+}
+.general-titles{
+  font-weight: 500;
+  font-size: 40px;
+  margin-top: 40px;
+}
+.new-collection{
+  display: flex;
+  height: 490px;
+  width: 100%;
+  gap:20px;
+}
+.product-new-collection{
+  width: 33%;
+  text-align: center;
+}
+.photo-collection{
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 360px;
+}
+.first-photo-collection{
+  position: absolute;
+  width: 350px;
+  height: 478px;
+  left: -24px;
+  top: -120px;
+}
+.title-new-collection{
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 0px;
+}
+.price-product{
+  font-size: 15px;
+  font-weight: 500;
+  color: #998E78;
+  margin-top: 10px;
+}
+
+.third-photo-collection{
+  position: absolute;
+  width: 717px;
+  height: 478px;
+  left: -183px;
+  top: -60px;
+}
+.box-button{
+  text-align: center;
+}
+.open-shop-second-section{
+  margin: auto;
+  cursor: pointer;
+  border: 1px solid #6E9C9F;
+  background-color: white;
+  width: 243px;
+  height: 68px;
+  font-weight: 400;
+  font-size: 17px;
+  color: #6E9C9F;
+}
+////////////////////////////////////////////////
+.good-qualities-sections{
+  display: flex;
+}
+.quality-section{
+  width: 33%;
+  margin-right: 75px;
+}
+.img-quality-section{
+  height: 60px;
+}
+.h5-quality-section{
+  font-size: 25px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+.text{
+  padding-top: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 2;
+  display: block;
+}
+//////////////////////////////
+.team-dream{
+  display: flex;
+}
+.img-team-dream{
+  width: 650px;
+  height: 488px;
+}
+.our-information{
+  padding-top: 80px;
+  padding-left: 100px;
+}
+.btn-brand-detail{
+  display: block;
+  text-decoration: none;
+  color: #6E9C9F;
+
+}
+//////////////
+.navigation{ ///???????
+  display: flex;
+  justify-content: space-around;
+
+}
+.title{
+  font-size: 55px;
+  font-weight: 500;
+  padding-top: 100px;
+  margin-top: 0px;
+}

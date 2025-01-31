@@ -1,0 +1,35 @@
+<div class="container" *ngIf="product">
+  <app-header></app-header>
+  <h1 class="product-title">{{product.name}}</h1>
+  <main class="product-detail">
+    <section class="product-image-container">
+      <img class="product-image" src="../../../assets/images/clothes/{{product.image}}">
+    </section>
+    <section class="product-property">
+      <h2 class="product-price">${{product.price}}</h2>
+      <p class="text">Виберіть розмір</p>
+<!--      <mat-radio-group>-->
+<!--        <mat-radio-button></mat-radio-button>-->
+<!--        <mat-radio-button></mat-radio-button>-->
+<!--      </mat-radio-group>-->
+      <div class="buttons-property-container">
+        <button class="size-box">S</button>
+        <button class="size-box">M</button>
+        <button class="size-box">L</button>
+        <button class="size-box">XL</button>
+        <button class="size-box">XXL</button>
+      </div>
+      <p class="text">Виберіть колір</p>
+      <div class="buttons-property-container">
+        <button class="color-box brown"></button>
+        <button class="color-box blue"></button>
+        <button class="color-box pink"></button>
+        <button class="color-box orange"></button>
+        <button class="color-box grey"></button>
+      </div>
+      <input class="quantity-items" type="text" [(ngModel)]="data">
+      <button class="add-to-cart" (click)="parseData(product)" (click)="sendCartProducts()"  type="button">Добавити в корзину</button>
+    </section>
+  </main>
+</div>
+<app-footer></app-footer>

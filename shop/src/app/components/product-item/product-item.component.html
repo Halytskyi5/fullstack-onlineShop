@@ -1,0 +1,10 @@
+<main class="product-items">
+  <div class="product-new-collection" *ngFor="let product of products | paginate: { itemsPerPage: 9, currentPage: p}">
+    <div class="photo-collection">
+      <img class="first-photo-collection" src="../../../assets/images/clothes/{{product.image}}" alt="">
+    </div>
+    <a class="title-new-collection" routerLink="/product-details/{{product.id}}">{{product.name}}</a>
+    <h5 class="price-product">${{product.price}}</h5>
+  </div>
+  <pagination-controls class="paggination" *ngIf="showPaggination" (pageChange)="p = $event"></pagination-controls>
+</main>
