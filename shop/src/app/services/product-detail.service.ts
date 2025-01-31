@@ -11,6 +11,7 @@ import {User} from "../entities/user";
 export class ProductDetailService implements OnInit {
   productsURL : string = "http://localhost:8080/products";
   cartURL : string = "http://localhost:8080/cart";
+  userURL : string = "http://localhost:8080/users";
   user : User;
   constructor(public http: HttpClient) {
     this.ngOnInit();
@@ -22,8 +23,9 @@ export class ProductDetailService implements OnInit {
   initializeUser() {
     this.getUser(1).subscribe(user => this.user = user);
   }
+
   getUser(id : number) : Observable<User> {
-    return this.http.get<User>(`http://localhost:8080/users/${id}`);
+    return this.http.get<User>(`${this.userURL}/${id}`);
   }
 
 
