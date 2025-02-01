@@ -42,6 +42,6 @@ export class ProductDetailService implements OnInit {
     return this.http.put<CartItem>(`${this.cartURL}/${item.id}`, item); /// ??????
   }
   removeProductFromCart(id : number){
-    return this.http.delete<any>(`${this.cartURL}/${id}`);
+    return this.http.delete(`${this.cartURL}/${id}`, {responseType:'text'});
   }
 }
