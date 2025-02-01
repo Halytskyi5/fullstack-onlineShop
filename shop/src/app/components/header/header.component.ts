@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { AppModule} from "../../app.module";
 import {ProductDetailService} from "../../services/product-detail.service";
 import {Product} from "../../entities/product";
@@ -12,15 +12,15 @@ import {User} from "../../entities/user";
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit, OnDestroy{
   cart : CartItem[] = [];
 
-  cartSubscription : Subscription;
-  private subscriptionCartUpdate : Subscription;
+  private getCartSubscription : Subscription;
+  private cartUpdateSubscription : Subscription;
 
   constructor(private productDetailService : ProductDetailService,
     private cartService : CartService) {
-    this.subscriptionCartUpdate = this.cartService.getUpdate().subscribe(products =>{
+    this.cartUpdateSubscription = this.cartService.getUpdate().subscribe(products =>{
       this.getCart();
     })
   }
@@ -29,13 +29,13 @@ export class HeaderComponent implements OnInit{
   }
 
   getCart(){
-    this.cartSubscription = this.productDetailService.getProductFromCart(2) // !
+    this.getCartSubscription = this.productDetailService.getProductFromCart(2) // !
       .subscribe( (data) =>{
       this.cart = data;
     });
   }
   ngOnDestroy(){
-    if(this.cartSubscription) this.cartSubscription.unsubscribe();
-    this.subscriptionCartUpdate.unsubscribe();
+    if(this.getCartSubscription) this.getCartSubscription.unsubscribe();
+    this.cartUpdateSubscription.unsubscribe();
   }
 }

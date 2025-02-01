@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ProductDetailsComponent} from "../product-details/product-details.component";
 import {CartItem} from "../../entities/cartItem";
 import {Subscription} from "rxjs";
@@ -12,53 +12,57 @@ import {UserService} from "../../services/user.service";
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
-export class CartComponent implements OnInit{
+export class CartComponent implements OnInit, OnDestroy{
   constructor(
     private productDetailService: ProductDetailService,
     private cartService : CartService,
     private userService : UserService
-  ) { }
+  ) {  }
   cart : CartItem[] = [];
   user : User;
-  cartSubscription : Subscription;
+  getCartSubscription : Subscription;
+  cartUpdateSubscription : Subscription;
   totalPrice : number = 0;
 
   ngOnInit() {
     this.initializeUserAndProducts();
-    /*this.cartSubscription = this.productDetailService.getProductFromCart().subscribe( (data) =>{
-      this.cart = data;
-    });*/
+    this.cartUpdateSubscription = this.cartService.getUpdate().subscribe( res => {
+      this.getProducts()
+    })
   }
 
   initializeUserAndProducts() {
     this.userService.getUser(2).subscribe(
       user => {
         this.user = user;
-        this.cartSubscription = this.productDetailService.getProductFromCart(this.user.id)
-          .subscribe( (data) =>{
-            this.cart = data;
-          });
-        this.getTotalPrice();
+        this.getProducts();
       }
     );
   }
 
+  getProducts() {
+    this.getCartSubscription = this.productDetailService.getProductFromCart(2)
+      .subscribe( (data) =>{
+        this.cart = data;
+        this.getTotalPrice();
+      });
+
+  }
+
   getTotalPrice(){
-    this.productDetailService.getProductFromCart(this.user.id).subscribe( cartItems =>{
-      this.cart = cartItems;
       if(this.cart){
+        this.totalPrice = 0;
         this.cart.map(item =>{
           this.totalPrice += item.productPrice * item.quantity;
         })
       }
-    })
   }
 
 
   removeProductFromCart(item : CartItem){
-    this.productDetailService.removeProductFromCart(item.id).subscribe( () =>{
-      let idx = this.cart.findIndex( (data) => data.id === item.id);
-      this.cart.splice(idx, 1);
+    this.productDetailService.removeProductFromCart(item.id).subscribe( (data) =>{
+      this.getProducts();
+      this.sendCartProducts();
     })
   }
 
@@ -66,6 +70,7 @@ export class CartComponent implements OnInit{
     this.cartService.sendUpdate(this.cart);
   }
   ngOnDestroy(){
-    if(this.cartSubscription) this.cartSubscription.unsubscribe();
+    if(this.getCartSubscription) this.getCartSubscription.unsubscribe();
+    this.cartUpdateSubscription.unsubscribe();
   }
 }

@@ -1,5 +1,6 @@
+<app-header></app-header>
 <div class="container">
-  <app-header></app-header>
+
   <h1 class="title">Корзина</h1>
   <main class="main" *ngIf="cart.length > 0">
     <table class="table" >
@@ -16,7 +17,7 @@
         <td class="image-item">
           <div class="product-information">
             <img class="delete-btn" src="../../../assets/images/icons/deleteBTN.png" alt=""
-                 (click)="removeProductFromCart(item)" (click)="sendCartProducts()">
+                 (click)="removeProductFromCart(item)">
             <img class="image" src="../../../assets/images/clothes/{{item.productImage}}" alt="">
             <p class="product-name">{{item.productName}}</p>
           </div>
