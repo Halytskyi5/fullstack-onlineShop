@@ -26,4 +26,9 @@ public class CartItemEntity {
     @JsonIgnoreProperties("itemsInCart")
     private UserEntity user;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "order_id")
+    @JsonIgnoreProperties("items")
+    private OrderEntity order;
+
 }
