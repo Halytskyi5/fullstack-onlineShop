@@ -1,4 +1,223 @@
-body, html {
-  font-family: "Poppins", sans-serif;
-  font-size: 50px;
+.container{
+  max-width: 1245px;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  .container-first-section {
+    display: flex;
+    height: 70vh;
+    section {
+      width: 50%;
+    }
+    .information-panel {
+      text-align: center;
+      h2 {
+        font-weight: 500;
+        font-size: 55px;
+        margin-top: 190px;
+      }
+      p {
+        width: 448px;
+        font-size: 20px;
+        font-weight: 400;
+        text-align: right;
+      }
+      .buttons-navigation {
+        justify-content: center;
+        text-align: center;
+        display: flex;
+        button {
+          transition: all .3s;
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+        .btn-next-section{
+          height: 67px;
+          width: 67px;
+          background-image: url("/assets/images/icons/arrow-down.png");
+          background-repeat: no-repeat;
+          background-position: center;
+          cursor: pointer;
+          border: none;
+          &:hover {
+            background-color: #baced0;
+          }
+        }
+        .btn-open-shop {
+          width: 243px;
+          height: 67px;
+          border: none;
+          cursor: pointer;
+          background-color: #6E9C9F;
+          color: #fff;
+          font-size: 17px;
+          font-weight: 400;
+          text-align: center;
+
+        }
+      }
+    }
+    .clothes-pictures {
+      margin: 0 auto;
+      text-align: center;
+      .general-photo {
+        position: relative;
+        height: 100%;
+
+        .first-stage-photo{
+          height: 100%;
+          z-index: 1;
+        }
+        .second-stage-photo{
+          max-width: 165px;
+          position: absolute;
+          z-index: 2;
+          right: 10%;
+          bottom: 35%;
+        }
+        .third-stage-photo{
+          position: absolute;
+          max-height: 300px;
+          left: 10%;
+          bottom: -10%;
+          z-index: 3;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .general-photo {
+    .second-stage-photo {
+      width: 140px;
+    }
+
+    .third-stage-photo {
+      height: 250px;
+    }
+  }
+}
+
+
+
+////////////////////////////////// content
+.container-second-section{
+  padding-top: 60px;
+}
+.general-titles{
+  font-weight: 500;
+  font-size: 40px;
+  margin-top: 40px;
+}
+.new-collection{
+  display: flex;
+  height: 490px;
+  width: 100%;
+  gap:20px;
+}
+.product-new-collection{
+  width: 33%;
+  text-align: center;
+}
+.photo-collection{
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 360px;
+}
+.first-photo-collection{
+  position: absolute;
+  width: 350px;
+  height: 478px;
+  left: -24px;
+  top: -120px;
+}
+.title-new-collection{
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 0px;
+}
+.price-product{
+  font-size: 15px;
+  font-weight: 500;
+  color: #998E78;
+  margin-top: 10px;
+}
+
+.third-photo-collection{
+  position: absolute;
+  width: 717px;
+  height: 478px;
+  left: -183px;
+  top: -60px;
+}
+.box-button{
+  text-align: center;
+}
+.open-shop-second-section{
+  margin: auto;
+  cursor: pointer;
+  border: 1px solid #6E9C9F;
+  background-color: white;
+  width: 243px;
+  height: 68px;
+  font-weight: 400;
+  font-size: 17px;
+  color: #6E9C9F;
+}
+////////////////////////////////////////////////
+.good-qualities-sections{
+  display: flex;
+}
+.quality-section{
+  width: 33%;
+  margin-right: 75px;
+}
+.img-quality-section{
+  height: 60px;
+}
+.h5-quality-section{
+  font-size: 25px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+.text{
+  padding-top: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 2;
+  display: block;
+}
+//////////////////////////////
+.team-dream{
+  display: flex;
+}
+.img-team-dream{
+  width: 650px;
+  height: 488px;
+}
+.our-information{
+  padding-top: 80px;
+  padding-left: 100px;
+}
+.btn-brand-detail{
+  display: block;
+  text-decoration: none;
+  color: #6E9C9F;
+
+}
+//////////////
+.navigation{ ///???????
+  display: flex;
+  justify-content: space-around;
+
+}
+.title{
+  font-size: 55px;
+  font-weight: 500;
+  padding-top: 100px;
+  margin-top: 0px;
 }

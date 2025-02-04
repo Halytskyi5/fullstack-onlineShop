@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Product} from "../entities/product";
 
 @Component({
   selector: 'app-test',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./test.component.scss']
 })
 export class TestComponent {
-
+  products : Product[] = [
+    {id: 1, name: "Футболка USA", image: "first-photo-collection.jpg", price: 99, availableQuantity: 1},
+    {id: 2, name: "Купальник Glow", image: "second-photo-collection.jpg", price: 123, availableQuantity: 1},
+    {id: 3, name: "Світшот", image: "third-photo-collection.jpg", price: 139, availableQuantity: 1},
+  ]
 }
