@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import shop_api.app.entity.CartItemEntity;
 import shop_api.app.entity.OrderEntity;
 import shop_api.app.entity.UserEntity;
+import shop_api.app.exception.CartEmptyException;
 import shop_api.app.repository.CartRepository;
 import shop_api.app.repository.OrderRepository;
 import shop_api.app.repository.UserRepository;
@@ -25,11 +26,15 @@ public class OrderService {
     public List<OrderEntity> getAllOrders() {
         return this.orderRepository.findAll();
     }
-    public OrderEntity addOrder(OrderEntity order, Long userId) {
+    public OrderEntity addOrder(OrderEntity order, Long userId) throws CartEmptyException {
         UserEntity user = userRepository.findById(userId).get();
         order.setUser(user);
         OrderEntity savedOrder = this.orderRepository.save(order);
-        for (CartItemEntity cartItem : user.getItemsInCart()) {
+        List<CartItemEntity> cartItems = user.getItemsInCart();
+        if (cartItems.isEmpty()) {
+            throw new CartEmptyException("Cart is empty!");
+        }
+        for (CartItemEntity cartItem : cartItems) {
             cartItem.setOrder(savedOrder);
             cartItem.setUser(null);
             this.cartRepository.save(cartItem);

@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import shop_api.app.entity.CartItemEntity;
 import shop_api.app.entity.OrderEntity;
+import shop_api.app.exception.CartEmptyException;
 import shop_api.app.service.OrderService;
 
 import java.util.List;
@@ -27,7 +28,10 @@ public class OrderController {
     @PostMapping
     public ResponseEntity addOrder(@RequestBody OrderEntity order, @RequestParam("user_id") Long userId) {
         try {
-            return ResponseEntity.ok(this.orderService.addOrder(order, userId));
+            this.orderService.addOrder(order, userId);
+            return ResponseEntity.ok("Order was saved!");
+        } catch (CartEmptyException exception) {
+            return ResponseEntity.badRequest().body(exception.getMessage());
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("error in addOrder" + e.getMessage());
         }
