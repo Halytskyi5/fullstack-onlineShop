@@ -85,7 +85,7 @@
       <div class="formGroup">
         <a routerLink="/order-success">
           <button class="btn-forms-group" [disabled]="dataUserForm.invalid || addressUserForm.invalid"
-                  (click)="removeAllProductsFromCart(cart)">
+                  (click)="postOrder()">
             Замовити
           </button>
         </a>
