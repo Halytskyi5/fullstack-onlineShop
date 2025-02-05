@@ -26,9 +26,9 @@ public class OrderController {
     }
 
     @PostMapping
-    public ResponseEntity addOrder(@RequestBody OrderEntity order, @RequestParam("user_id") Long userId) {
+    public ResponseEntity addOrder(@RequestParam("user_id") Long userId) {
         try {
-            this.orderService.addOrder(order, userId);
+            this.orderService.addOrder(userId);
             return ResponseEntity.ok("Order was saved!");
         } catch (CartEmptyException exception) {
             return ResponseEntity.badRequest().body(exception.getMessage());

@@ -26,8 +26,9 @@ public class OrderService {
     public List<OrderEntity> getAllOrders() {
         return this.orderRepository.findAll();
     }
-    public OrderEntity addOrder(OrderEntity order, Long userId) throws CartEmptyException {
+    public OrderEntity addOrder(Long userId) throws CartEmptyException {
         UserEntity user = userRepository.findById(userId).get();
+        OrderEntity order = new OrderEntity();
         order.setUser(user);
         OrderEntity savedOrder = this.orderRepository.save(order);
         List<CartItemEntity> cartItems = user.getItemsInCart();
