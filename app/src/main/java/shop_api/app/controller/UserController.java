@@ -18,7 +18,7 @@ public class UserController {
         try {
             return ResponseEntity.ok(this.userService.createUser(user));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("error in createUser()");
+            return ResponseEntity.badRequest().body("error in createUser() " + e.getMessage());
         }
     }
     @GetMapping("/all")

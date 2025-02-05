@@ -15,13 +15,13 @@ import java.util.List;
 @NoArgsConstructor
 public class UserEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
     private String password;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    @JsonIgnoreProperties("user")
+    @JsonIgnoreProperties({"user", "order"})
     private List<CartItemEntity> itemsInCart;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)

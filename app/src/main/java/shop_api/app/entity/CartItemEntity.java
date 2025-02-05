@@ -23,12 +23,12 @@ public class CartItemEntity {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
-    @JsonIgnoreProperties("itemsInCart")
+    @JsonIgnoreProperties({"itemsInCart", "orders"})
     private UserEntity user;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "order_id")
-    @JsonIgnoreProperties("items")
+    @JsonIgnoreProperties({"user", "items"})
     private OrderEntity order;
 
 }
