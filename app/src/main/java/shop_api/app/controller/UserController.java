@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import shop_api.app.entity.UserEntity;
+import shop_api.app.exception.UserAlreadyExistException;
 import shop_api.app.service.UserService;
 
 
@@ -17,8 +18,10 @@ public class UserController {
     public ResponseEntity createUser(@RequestBody UserEntity user) {
         try {
             return ResponseEntity.ok(this.userService.createUser(user));
+        } catch (UserAlreadyExistException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("error in createUser() " + e.getMessage());
+            return ResponseEntity.badRequest().body("Error is exist!");
         }
     }
     @GetMapping("/all")
