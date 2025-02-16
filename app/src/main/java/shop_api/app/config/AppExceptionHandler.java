@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import shop_api.app.exceptions.AppException;
 
 @ControllerAdvice
-public class AppExceptionHandles {
+public class AppExceptionHandler {
 
     @ExceptionHandler(value = { AppException.class })
     @ResponseBody
