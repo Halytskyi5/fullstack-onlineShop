@@ -1,15 +1,21 @@
 package shop_api.app.mappers;
 
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+import org.springframework.stereotype.Component;
 import shop_api.app.dtos.RegisterDto;
 import shop_api.app.dtos.UserDto;
 import shop_api.app.entities.UserEntity;
 
-@Mapper(componentModel = "spring")
-public interface UserMapper {
-    UserDto toUserDto(UserEntity user);
+public class UserMapper {
+    public static UserDto toUserDto(UserEntity user) {
+        UserDto userDto = new UserDto();
+        userDto.setId(user.getId());
+        userDto.setUsername(user.getUsername());
+        return userDto;
+    }
 
-    @Mapping(source = "password", target = "password", ignore = true)
-    UserEntity toUser(RegisterDto registerDto);
+    public static UserEntity toUser(RegisterDto registerDto) {
+        UserEntity user = new UserEntity();
+        user.setUsername(registerDto.username());
+        return user;
+    }
 }

@@ -1,6 +1,5 @@
 package shop_api.app.services;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import shop_api.app.entities.CartItemEntity;
 import shop_api.app.repositories.CartRepository;
@@ -9,7 +8,6 @@ import shop_api.app.repositories.UserRepository;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class CartService {
     private CartRepository cartRepository;
     private UserRepository userRepository;
