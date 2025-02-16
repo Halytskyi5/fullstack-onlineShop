@@ -1,8 +1,8 @@
-package shop_api.app.repository;
+package shop_api.app.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import shop_api.app.entity.CartItemEntity;
-import shop_api.app.entity.UserEntity;
+import shop_api.app.entities.CartItemEntity;
+import shop_api.app.entities.UserEntity;
 
 import java.util.List;
 

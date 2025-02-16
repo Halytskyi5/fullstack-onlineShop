@@ -1,19 +1,17 @@
-package shop_api.app.service;
+package shop_api.app.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import shop_api.app.entity.CartItemEntity;
-import shop_api.app.entity.ProductEntity;
-import shop_api.app.repository.CartRepository;
-import shop_api.app.repository.UserRepository;
+import shop_api.app.entities.CartItemEntity;
+import shop_api.app.repositories.CartRepository;
+import shop_api.app.repositories.UserRepository;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class CartService {
-    @Autowired
     private CartRepository cartRepository;
-    @Autowired
     private UserRepository userRepository;
 
     public CartItemEntity addItem(CartItemEntity cartItem, Long userId) {

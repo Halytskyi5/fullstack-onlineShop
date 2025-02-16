@@ -1,4 +1,4 @@
-package shop_api.app.entity;
+package shop_api.app.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;

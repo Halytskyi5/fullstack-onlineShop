@@ -1,10 +1,10 @@
-package shop_api.app.service;
+package shop_api.app.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import shop_api.app.entity.UserEntity;
-import shop_api.app.exception.UserAlreadyExistException;
-import shop_api.app.repository.UserRepository;
+import shop_api.app.entities.UserEntity;
+import shop_api.app.exceptions.UserAlreadyExistException;
+import shop_api.app.repositories.UserRepository;
 
 import java.util.List;
 

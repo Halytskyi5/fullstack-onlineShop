@@ -1,14 +1,10 @@
-package shop_api.app.controller;
+package shop_api.app.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import shop_api.app.entity.CartItemEntity;
-import shop_api.app.entity.OrderEntity;
-import shop_api.app.exception.CartEmptyException;
-import shop_api.app.service.OrderService;
-
-import java.util.List;
+import shop_api.app.exceptions.CartEmptyException;
+import shop_api.app.services.OrderService;
 
 @RestController
 @RequestMapping("/orders")

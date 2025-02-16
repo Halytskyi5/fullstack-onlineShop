@@ -1,9 +1,9 @@
-package shop_api.app.service;
+package shop_api.app.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import shop_api.app.entity.ProductEntity;
-import shop_api.app.repository.ProductRepository;
+import shop_api.app.entities.ProductEntity;
+import shop_api.app.repositories.ProductRepository;
 
 import java.util.Arrays;
 import java.util.List;

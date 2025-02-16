@@ -1,11 +1,11 @@
-package shop_api.app.controller;
+package shop_api.app.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import shop_api.app.entity.UserEntity;
-import shop_api.app.exception.UserAlreadyExistException;
-import shop_api.app.service.UserService;
+import shop_api.app.entities.UserEntity;
+import shop_api.app.exceptions.UserAlreadyExistException;
+import shop_api.app.services.UserService;
 
 
 @RestController

@@ -1,17 +1,15 @@
-package shop_api.app.service;
+package shop_api.app.services;
 
-import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import shop_api.app.entity.CartItemEntity;
-import shop_api.app.entity.OrderEntity;
-import shop_api.app.entity.UserEntity;
-import shop_api.app.exception.CartEmptyException;
-import shop_api.app.repository.CartRepository;
-import shop_api.app.repository.OrderRepository;
-import shop_api.app.repository.UserRepository;
+import shop_api.app.entities.CartItemEntity;
+import shop_api.app.entities.OrderEntity;
+import shop_api.app.entities.UserEntity;
+import shop_api.app.exceptions.CartEmptyException;
+import shop_api.app.repositories.CartRepository;
+import shop_api.app.repositories.OrderRepository;
+import shop_api.app.repositories.UserRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

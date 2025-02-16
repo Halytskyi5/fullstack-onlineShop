@@ -1,15 +1,15 @@
-package shop_api.app.controller;
+package shop_api.app.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import shop_api.app.entity.CartItemEntity;
-import shop_api.app.service.CartService;
+import shop_api.app.entities.CartItemEntity;
+import shop_api.app.services.CartService;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/cart")
 public class CartItemController {
-    @Autowired
     private CartService cartService;
 
     /*@PostMapping
