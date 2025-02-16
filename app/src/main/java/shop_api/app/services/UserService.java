@@ -2,6 +2,7 @@ package shop_api.app.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import shop_api.app.dtos.CredentialsDto;
 import shop_api.app.dtos.RegisterDto;
@@ -11,29 +12,33 @@ import shop_api.app.exceptions.AppException;
 import shop_api.app.mappers.UserMapper;
 import shop_api.app.repositories.UserRepository;
 
+import java.nio.CharBuffer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
 
     public UserDto register(RegisterDto registerDto) {
-        /*Optional<UserEntity> user = this.userRepository.findByUsername(registerDto.username());
+        Optional<UserEntity> user = this.userRepository.findByUsername(registerDto.username());
         if (user.isPresent()) {
             throw new AppException("User with this username already exist!", HttpStatus.BAD_REQUEST);
         }
-        UserEntity userEntity = this.userMapper.toUser(registerDto);
-        userEntity.setPassword(new String(registerDto.password()));
-        return this.userMapper.toUserDto(this.userRepository.save(userEntity));*/ return null;
+        UserEntity userEntity = UserMapper.toUser(registerDto);
+        userEntity.setPassword(this.passwordEncoder.encode(CharBuffer.wrap(registerDto.password())));
+        return UserMapper.toUserDto(this.userRepository.save(userEntity));
     }
 
     public UserDto login(CredentialsDto credentialsDto) {
-        UserEntity user = this.userRepository.findByUsername(credentialsDto.username());
-                //.orElseThrow(() -> new AppException("Unknown user", HttpStatus.NOT_FOUND));
-        if (true) {// check password
+        UserEntity user = this.userRepository.findByUsername(credentialsDto.username())
+                .orElseThrow(() -> new AppException("Unknown user", HttpStatus.NOT_FOUND));
+        if (passwordEncoder.matches(CharBuffer.wrap(credentialsDto.password()), user.getPassword())) {
             return UserMapper.toUserDto(user);
         }
         throw new AppException("Invalid password", HttpStatus.BAD_REQUEST);
