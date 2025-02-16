@@ -9,8 +9,6 @@ import java.util.List;
 
 @Entity
 @Data
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserEntity {
@@ -31,4 +29,5 @@ public class UserEntity {
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     @JsonIgnoreProperties("user")
     private List<OrderEntity> orders;
+
 }

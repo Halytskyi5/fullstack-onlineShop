@@ -26,18 +26,18 @@ public class UserService {
     private UserMapper userMapper;
 
     public UserDto register(RegisterDto registerDto) {
-        Optional<UserEntity> user = this.userRepository.findByUsername(registerDto.username());
+        /*Optional<UserEntity> user = this.userRepository.findByUsername(registerDto.username());
         if (user.isPresent()) {
             throw new AppException("User with this username already exist!", HttpStatus.BAD_REQUEST);
         }
         UserEntity userEntity = this.userMapper.toUser(registerDto);
         userEntity.setPassword(new String(registerDto.password()));
-        return this.userMapper.toUserDto(this.userRepository.save(userEntity));
+        return this.userMapper.toUserDto(this.userRepository.save(userEntity));*/ return null;
     }
 
     public UserDto login(CredentialsDto credentialsDto) {
-        UserEntity user = this.userRepository.findByUsername(credentialsDto.username())
-                .orElseThrow(() -> new AppException("Unknown user", HttpStatus.NOT_FOUND));
+        UserEntity user = this.userRepository.findByUsername(credentialsDto.username());
+                //.orElseThrow(() -> new AppException("Unknown user", HttpStatus.NOT_FOUND));
         if (true) {// check password
             return this.userMapper.toUserDto(user);
         }

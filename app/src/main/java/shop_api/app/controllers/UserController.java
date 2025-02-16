@@ -14,7 +14,6 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/users")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -29,7 +28,7 @@ public class UserController {
         return ResponseEntity.ok(this.userService.login(credentialsDto));
     }
 
-    @GetMapping("/all")
+    @GetMapping("/get-all-users")
     public ResponseEntity<List<UserDto>> getAllUsers() {
         return ResponseEntity.ok(this.userService.getAllUsers());
     }
