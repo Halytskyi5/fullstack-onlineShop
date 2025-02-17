@@ -1,29 +1,14 @@
-package shop_api.app.entities;
+package shop_api.app.dtos;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*;
-
-@Entity
-public class CartItemEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class CartItemDto {
     private Long id;
-
     private Long productId;
     private String productName;
     private String productImage;
     private Integer productPrice;
     private Integer quantity;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
-    private UserEntity user;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "order_id")
-    private OrderEntity order;
-
-    public CartItemEntity() {
+    public CartItemDto() {
     }
 
     public Long getId() {
@@ -72,21 +57,5 @@ public class CartItemEntity {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
-    }
-
-    public UserEntity getUser() {
-        return user;
-    }
-
-    public void setUser(UserEntity user) {
-        this.user = user;
-    }
-
-    public OrderEntity getOrder() {
-        return order;
-    }
-
-    public void setOrder(OrderEntity order) {
-        this.order = order;
     }
 }

@@ -6,6 +6,9 @@ public class UserDto {
     private String username;
     private String token;
 
+    public UserDto() {
+    }
+
     public Long getId() {
         return id;
     }
