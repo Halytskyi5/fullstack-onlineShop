@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import shop_api.app.config.UserAuthProvider;
 import shop_api.app.dtos.CredentialsDto;
 import shop_api.app.dtos.RegisterDto;
 import shop_api.app.dtos.UserDto;
@@ -23,6 +24,8 @@ public class UserService {
     private UserRepository userRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private UserAuthProvider userAuthProvider;
 
 
     public UserDto register(RegisterDto registerDto) {
@@ -32,14 +35,18 @@ public class UserService {
         }
         UserEntity userEntity = UserMapper.toUser(registerDto);
         userEntity.setPassword(this.passwordEncoder.encode(CharBuffer.wrap(registerDto.password())));
-        return UserMapper.toUserDto(this.userRepository.save(userEntity));
+        UserDto savedUser = UserMapper.toUserDto(this.userRepository.save(userEntity));
+        savedUser.setToken(this.userAuthProvider.createToken(savedUser));
+        return savedUser;
     }
 
     public UserDto login(CredentialsDto credentialsDto) {
         UserEntity user = this.userRepository.findByUsername(credentialsDto.username())
                 .orElseThrow(() -> new AppException("Unknown user", HttpStatus.NOT_FOUND));
         if (passwordEncoder.matches(CharBuffer.wrap(credentialsDto.password()), user.getPassword())) {
-            return UserMapper.toUserDto(user);
+            UserDto userDto = UserMapper.toUserDto(user);
+            userDto.setToken(this.userAuthProvider.createToken(userDto));
+            return userDto;
         }
         throw new AppException("Invalid password", HttpStatus.BAD_REQUEST);
     }

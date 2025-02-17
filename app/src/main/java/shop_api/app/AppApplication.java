@@ -12,7 +12,7 @@ public class AppApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AppApplication.class, args);
 	}
-	@Bean
+	/*@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
 			@Override
@@ -26,6 +26,6 @@ public class AppApplication {
 						.allowCredentials(false);  // may be true
 			}
 		};
-	}
+	}*/
 
 }
