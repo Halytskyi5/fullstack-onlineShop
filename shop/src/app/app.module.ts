@@ -22,6 +22,8 @@ import { OrderComponent } from './pages/order/order.component';
 import { OrderSuccessComponent } from './pages/order-success/order-success.component';
 import {MatRadioButton, MatRadioModule} from "@angular/material/radio";
 import { TestComponent } from './test/test.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { RegisterPageComponent } from './pages/register-page/register-page.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { TestComponent } from './test/test.component';
     CartComponent,
     OrderComponent,
     OrderSuccessComponent,
-    TestComponent
+    TestComponent,
+    LoginPageComponent,
+    RegisterPageComponent
   ],
   imports: [
     BrowserModule,

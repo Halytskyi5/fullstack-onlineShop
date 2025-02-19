@@ -10,6 +10,8 @@ import {CartComponent} from "./pages/cart/cart.component";
 import {OrderComponent} from "./pages/order/order.component";
 import {OrderSuccessComponent} from "./pages/order-success/order-success.component";
 import {TestComponent} from "./test/test.component";
+import {LoginPageComponent} from "./pages/login-page/login-page.component";
+import {RegisterPageComponent} from "./pages/register-page/register-page.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -20,7 +22,9 @@ const routes: Routes = [
   {path: 'cart', component: CartComponent},
   {path: 'order', component: OrderComponent},
   {path: 'order-success', component: OrderSuccessComponent},
-  {path: 'test', component: TestComponent}
+  {path: 'test', component: TestComponent},
+  {path: 'login', component: LoginPageComponent},
+  {path: 'register', component: RegisterPageComponent}
 ];
 
 @NgModule({
