@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Product} from "../../dtos/product";
-import {CartItem} from "../../dtos/cartItem";
+import {ProductDto} from "../../dtos/productDto";
+import {CartItemDto} from "../../dtos/cartItemDto";
 import {ActivatedRoute} from "@angular/router";
 import {ProductDetailService} from "../../services/product-detail.service";
 import {Subscription} from "rxjs";
@@ -17,8 +17,8 @@ export class ProductDetailsComponent implements OnInit{
     private route: ActivatedRoute,
     private cartService : CartService) {
   }
-  product : Product;
-  cart : CartItem[];
+  product : ProductDto;
+  cart : CartItemDto[];
   cartSubscription : Subscription;
   data : string = "1";
   quantity: number = 1;
@@ -37,12 +37,12 @@ export class ProductDetailsComponent implements OnInit{
   }
 
 
-  parseData(product : Product){
+  parseData(product : ProductDto){
     this.quantity = parseInt(this.data);
     this.addToCart(product);
   }
-  addToCart(product : Product){
-    let cartItem : CartItem = {
+  addToCart(product : ProductDto){
+    let cartItem : CartItemDto = {
       id : 0,
       quantity : this.quantity,
       productPrice: product.price,
@@ -71,13 +71,13 @@ export class ProductDetailsComponent implements OnInit{
     }
     alert(`Товар ${product.name} кількістю ${cartItem.quantity} шт успішно добавлено в корзину!`)
   }
-  postToCart(product : CartItem, userId : number){
+  postToCart(product : CartItemDto, userId : number){
     this.productDetailService.postProductToCart(product ,userId).subscribe( (data) => {
         this.cart.push(data)
       }
     );
   }
-  updateToCart(cartItem : CartItem){
+  updateToCart(cartItem : CartItemDto){
     this.productDetailService.updateProductToCart(cartItem).subscribe( (data) =>{
       this.cart.map(val => {
         if(val.id === data.id) {

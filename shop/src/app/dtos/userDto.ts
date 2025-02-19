@@ -1,6 +1,6 @@
-import {CartItem} from "./cartItem";
+import {CartItemDto} from "./cartItemDto";
 
-export interface User {
+export interface UserDto {
   id : number,
   username : string,
   password : string,

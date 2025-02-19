@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Product} from "../../dtos/product";
+import {ProductDto} from "../../dtos/productDto";
 
 @Component({
   selector: 'app-product-item',
@@ -7,7 +7,7 @@ import {Product} from "../../dtos/product";
   styleUrls: ['./product-item.component.scss']
 })
 export class ProductItemComponent {
-  @Input() products: Product[];
+  @Input() products: ProductDto[];
   @Input() showPaggination: boolean = false;
   p: number = 1;
 

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Product} from "../../dtos/product";
+import {ProductDto} from "../../dtos/productDto";
 import {ShopServiceService} from "../../services/shop-service.service";
 
 @Component({
@@ -8,7 +8,7 @@ import {ShopServiceService} from "../../services/shop-service.service";
   styleUrls: ['./shop.component.scss']
 })
 export class ShopComponent implements OnInit{
-  products: Product[];
+  products: ProductDto[];
   ngOnInit() {
     this.getProducts();
   }

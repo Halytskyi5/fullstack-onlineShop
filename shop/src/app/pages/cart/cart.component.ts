@@ -1,10 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ProductDetailsComponent} from "../product-details/product-details.component";
-import {CartItem} from "../../dtos/cartItem";
+import {CartItemDto} from "../../dtos/cartItemDto";
 import {Subscription} from "rxjs";
 import {ProductDetailService} from "../../services/product-detail.service";
 import {CartService} from "../../services/cart.service";
-import {User} from "../../dtos/user";
+import {UserDto} from "../../dtos/userDto";
 import {UserService} from "../../services/user.service";
 
 @Component({
@@ -18,8 +18,8 @@ export class CartComponent implements OnInit, OnDestroy{
     private cartService : CartService,
     private userService : UserService
   ) {  }
-  cart : CartItem[] = [];
-  user : User;
+  cart : CartItemDto[] = [];
+  user : UserDto;
   getCartSubscription : Subscription;
   cartUpdateSubscription : Subscription;
   totalPrice : number = 0;
@@ -59,7 +59,7 @@ export class CartComponent implements OnInit, OnDestroy{
   }
 
 
-  removeProductFromCart(item : CartItem){
+  removeProductFromCart(item : CartItemDto){
     this.productDetailService.removeProductFromCart(item.id).subscribe( (data) =>{
       this.getProducts();
       this.sendCartProducts();

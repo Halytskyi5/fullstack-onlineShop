@@ -1,11 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import { AppModule} from "../../app.module";
 import {ProductDetailService} from "../../services/product-detail.service";
-import {Product} from "../../dtos/product";
-import {CartItem} from "../../dtos/cartItem";
+import {ProductDto} from "../../dtos/productDto";
+import {CartItemDto} from "../../dtos/cartItemDto";
 import {Subscription} from "rxjs";
 import {CartService} from "../../services/cart.service";
-import {User} from "../../dtos/user";
+import {UserDto} from "../../dtos/userDto";
 
 @Component({
   selector: 'app-header',
@@ -13,7 +13,7 @@ import {User} from "../../dtos/user";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, OnDestroy{
-  cart : CartItem[] = [];
+  cart : CartItemDto[] = [];
 
   private getCartSubscription : Subscription;
   private cartUpdateSubscription : Subscription;

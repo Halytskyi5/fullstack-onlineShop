@@ -1,9 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ProductDetailService} from "../../services/product-detail.service";
-import {Product} from "../../dtos/product";
+import {ProductDto} from "../../dtos/productDto";
 import {Subscription} from "rxjs";
-import {CartItem} from "../../dtos/cartItem";
+import {CartItemDto} from "../../dtos/cartItemDto";
 import {OrderService} from "../../services/order.service";
 import {CartService} from "../../services/cart.service";
 
@@ -15,7 +15,7 @@ import {CartService} from "../../services/cart.service";
 export class OrderComponent implements OnInit, OnDestroy{
   constructor( private productDetailService: ProductDetailService, private orderService : OrderService,
                private cartService : CartService) { }
-  cart : CartItem[] = [];
+  cart : CartItemDto[] = [];
   cartSubscription : Subscription;
   totalPrice : number = 0;
   ngOnInit() {
@@ -41,12 +41,12 @@ export class OrderComponent implements OnInit, OnDestroy{
     this.getTotalPrice();
     this.cartService.sendUpdate(this.cart);
   }
-/*  removeAllProductsFromCart(cart : CartItem[]){
+/*  removeAllProductsFromCart(cart : CartItemDto[]){
     for (let product of cart){
       this.removeProductFromCart(product);
     }
   }
-  removeProductFromCart(product : CartItem){
+  removeProductFromCart(product : CartItemDto){
     this.productDetailService.removeProductFromCart(product.id).subscribe( () =>{
       let idx = this.cart.findIndex( (data) => data.id === product.id);
       this.cart.splice(idx, 1);

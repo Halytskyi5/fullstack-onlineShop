@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import {Observable, Subject} from "rxjs";
-import {CartItem} from "../dtos/cartItem";
+import {CartItemDto} from "../dtos/cartItemDto";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  private cart = new Subject<CartItem[]>();
-  sendUpdate(productsCart : CartItem[]){
+  private cart = new Subject<CartItemDto[]>();
+  sendUpdate(productsCart : CartItemDto[]){
     this.cart.next(productsCart);
   }
-  getUpdate():Observable<CartItem[]>{
+  getUpdate():Observable<CartItemDto[]>{
     return this.cart.asObservable();
   }
   constructor() { }
