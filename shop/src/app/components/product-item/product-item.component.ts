@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Product} from "../../entities/product";
+import {Product} from "../../dtos/product";
 
 @Component({
   selector: 'app-product-item',

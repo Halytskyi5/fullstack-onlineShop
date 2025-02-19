@@ -1,9 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ProductDetailService} from "../../services/product-detail.service";
-import {Product} from "../../entities/product";
+import {Product} from "../../dtos/product";
 import {Subscription} from "rxjs";
-import {CartItem} from "../../entities/cartItem";
+import {CartItem} from "../../dtos/cartItem";
 import {OrderService} from "../../services/order.service";
 import {CartService} from "../../services/cart.service";
 

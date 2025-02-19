@@ -1,11 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import { AppModule} from "../../app.module";
 import {ProductDetailService} from "../../services/product-detail.service";
-import {Product} from "../../entities/product";
-import {CartItem} from "../../entities/cartItem";
+import {Product} from "../../dtos/product";
+import {CartItem} from "../../dtos/cartItem";
 import {Subscription} from "rxjs";
 import {CartService} from "../../services/cart.service";
-import {User} from "../../entities/user";
+import {User} from "../../dtos/user";
 
 @Component({
   selector: 'app-header',

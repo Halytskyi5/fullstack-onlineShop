@@ -1,10 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ProductDetailsComponent} from "../product-details/product-details.component";
-import {CartItem} from "../../entities/cartItem";
+import {CartItem} from "../../dtos/cartItem";
 import {Subscription} from "rxjs";
 import {ProductDetailService} from "../../services/product-detail.service";
 import {CartService} from "../../services/cart.service";
-import {User} from "../../entities/user";
+import {User} from "../../dtos/user";
 import {UserService} from "../../services/user.service";
 
 @Component({

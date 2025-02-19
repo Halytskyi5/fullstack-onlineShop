@@ -1,9 +1,9 @@
 import {Injectable, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Product} from "../entities/product";
-import {CartItem} from "../entities/cartItem";
-import {User} from "../entities/user";
+import {Product} from "../dtos/product";
+import {CartItem} from "../dtos/cartItem";
+import {User} from "../dtos/user";
 
 @Injectable({
   providedIn: 'root'

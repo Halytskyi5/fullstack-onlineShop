@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Product} from "../../entities/product";
-import {CartItem} from "../../entities/cartItem";
+import {Product} from "../../dtos/product";
+import {CartItem} from "../../dtos/cartItem";
 import {ActivatedRoute} from "@angular/router";
 import {ProductDetailService} from "../../services/product-detail.service";
 import {Subscription} from "rxjs";
