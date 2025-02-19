@@ -15,6 +15,7 @@ import shop_api.app.repositories.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CartService {
@@ -73,6 +74,10 @@ public class CartService {
     }
 
     public void deleteItem(Long id) {
+        CartItemEntity item = this.cartRepository.findById(id).get();
+        ProductEntity product = this.productRepository.findById(item.getProductId()).get();
+        product.setAvailableQuantity(product.getAvailableQuantity() + item.getQuantity());
+        this.productRepository.save(product);
         this.cartRepository.deleteById(id);
     }
 
