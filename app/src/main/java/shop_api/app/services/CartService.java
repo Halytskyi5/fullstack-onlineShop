@@ -66,9 +66,6 @@ public class CartService {
         UserEntity user = this.userRepository.findById(userId)
                 .orElseThrow(() -> new AppException("Unknown user!", HttpStatus.NOT_FOUND));
         List<CartItemEntity> cartItemEntities = this.cartRepository.findAllByUser(user);
-        if (cartItemEntities.isEmpty()) {
-            return new ArrayList<CartItemDto>();
-        }
         for (CartItemEntity item : cartItemEntities) {
             cartItemDtos.add(Mapper.toCartDto(item));
         }

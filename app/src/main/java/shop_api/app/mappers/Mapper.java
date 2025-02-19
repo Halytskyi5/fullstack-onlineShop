@@ -7,11 +7,19 @@ import shop_api.app.entities.CartItemEntity;
 import shop_api.app.entities.ProductEntity;
 import shop_api.app.entities.UserEntity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Mapper {
     public static UserDto toUserDto(UserEntity user) {
         UserDto userDto = new UserDto();
         userDto.setId(user.getId());
         userDto.setUsername(user.getUsername());
+        List<CartItemDto> items = new ArrayList<>();
+        for (CartItemEntity cartItem : user.getItemsInCart()) {
+            items.add(Mapper.toCartDto(cartItem));
+        }
+        userDto.setItemsInCart(items);
         return userDto;
     }
 

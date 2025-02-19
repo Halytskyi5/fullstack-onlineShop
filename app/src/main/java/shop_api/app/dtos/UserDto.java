@@ -1,10 +1,13 @@
 package shop_api.app.dtos;
 
 
+import java.util.List;
+
 public class UserDto {
     private Long id;
     private String username;
     private String token;
+    private List<CartItemDto> itemsInCart;
 
     public UserDto() {
     }
@@ -31,5 +34,13 @@ public class UserDto {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public List<CartItemDto> getItemsInCart() {
+        return itemsInCart;
+    }
+
+    public void setItemsInCart(List<CartItemDto> itemsInCart) {
+        this.itemsInCart = itemsInCart;
     }
 }
