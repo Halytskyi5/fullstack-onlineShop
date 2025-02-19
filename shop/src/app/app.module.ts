@@ -24,6 +24,7 @@ import {MatRadioButton, MatRadioModule} from "@angular/material/radio";
 import { TestComponent } from './test/test.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
+import { SlideDownPanelComponent } from './components/slide-down-panel/slide-down-panel.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { RegisterPageComponent } from './pages/register-page/register-page.compo
     OrderSuccessComponent,
     TestComponent,
     LoginPageComponent,
-    RegisterPageComponent
+    RegisterPageComponent,
+    SlideDownPanelComponent
   ],
   imports: [
     BrowserModule,

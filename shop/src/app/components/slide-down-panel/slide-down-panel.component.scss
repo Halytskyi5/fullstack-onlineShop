@@ -1,0 +1,54 @@
+.slide-down-panel {
+  position: fixed;
+  top: -100%; /* Початкова позиція за межами видимості */
+  left: 0;
+  width: 100%;
+  background-color: #c55959;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: top 0.5s ease-in-out;
+  z-index: 1000;
+}
+
+.slide-down-panel.visible {
+  top: 0; /* Кінцева позиція - зверху */
+}
+
+.content {
+  padding: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.buttons {
+  margin-bottom: 30px;
+  justify-content: center;
+  display: flex;
+  gap: 20px; /* Відстань між кнопками */
+}
+
+.auth-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.register {
+  background-color: #007bff;
+  color: white;
+}
+
+.register:hover {
+  background-color: #0056b3;
+}
+
+.login {
+  background-color: #28a745;
+  color: white;
+}
+
+.login:hover {
+  background-color: #218838;
+}
