@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {AuthDto} from "../dtos/authDto";
-import {Observable} from "rxjs";
+import {Observable, of} from "rxjs";
 import {UserDto} from "../dtos/userDto";
 
 @Injectable({
@@ -14,20 +14,20 @@ export class AuthService {
   constructor(private httpClient : HttpClient) { }
 
 
-  get user(): UserDto {
+  getUser(): UserDto {
     return this.currentUser;
   }
 
-  set user(value: UserDto) {
-    this.currentUser = value;
+  setUser(user: UserDto) {
+    this.currentUser = user;
   }
 
   login(authDto : AuthDto): Observable<UserDto> {
-    return this.httpClient.post<UserDto>(this.url, authDto);
+    return this.httpClient.post<UserDto>(`${this.url}/login`, authDto, {headers: this.headers});
   }
 
   register(authDto : AuthDto) : Observable<UserDto> {
-    return this.httpClient.post<UserDto>(this.url, authDto);
+    return this.httpClient.post<UserDto>(`${this.url}/register`, authDto, {headers: this.headers});
   }
 
   getAuthToken(): string | null {
@@ -42,5 +42,11 @@ export class AuthService {
       window.localStorage.removeItem("auth_token");
       this.headers = {};
     }
+  }
+  loggedIn$() : Observable<boolean> {
+     if (this.getAuthToken() == null) {
+       return of(false);
+     }
+     return of(true);
   }
 }

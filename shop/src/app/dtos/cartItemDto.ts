@@ -7,9 +7,4 @@ export interface CartItemDto {
   productImage: string;
   productPrice: number;
   quantity: number;
-  user : {
-    id : number,
-    username : string,
-    password : string
-  }
 }

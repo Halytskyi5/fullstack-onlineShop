@@ -19,9 +19,12 @@
       </div>
       <div class="cart">
         <a class="a-cart" routerLink="/cart">
-          <mat-icon class="cart-picture" matBadge="{{cart.length}}" matBadgeColor="warn" *ngIf="cart.length > 0">shopping_cart</mat-icon>
+          <mat-icon class="cart-picture" matBadge="{{cart.length}}" matBadgeColor="warn" *ngIf="cart.length > 0">
+            shopping_cart
+          </mat-icon>
           <mat-icon class="cart-picture" *ngIf="cart.length === 0">shopping_cart</mat-icon>
         </a>
+        <mat-icon *ngIf="loggedIn" class="cart-picture" (click)="logout()">exit_to_app</mat-icon>
       </div>
     </div>
   </div>

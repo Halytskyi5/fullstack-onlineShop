@@ -48,12 +48,7 @@ export class ProductDetailsComponent implements OnInit{
       productPrice: product.price,
       productId : product.id,
       productImage : product.image,
-      productName: product.name,
-      user : {
-        id : 0,
-        username : "",
-        password : ""
-      }
+      productName: product.name
     };
     let findItem;
 
