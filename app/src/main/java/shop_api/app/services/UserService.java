@@ -61,4 +61,9 @@ public class UserService {
     }
 
 
+    public UserDto getUser(Long id) {
+        UserEntity user = this.userRepository.findById(id)
+                .orElseThrow(() -> new AppException("Incorrect id!", HttpStatus.NOT_FOUND));
+        return Mapper.toUserDto(user);
+    }
 }

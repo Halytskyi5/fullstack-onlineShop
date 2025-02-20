@@ -19,7 +19,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private getCartSubscription: Subscription;
   private cartUpdateSubscription: Subscription;
-  loggedIn: boolean;
+  loggedIn: boolean = false;
+  user : UserDto;
 
   constructor(
     private productDetailService: ProductDetailService,
@@ -33,21 +34,26 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.getCart();
     this.authService.loggedIn$().subscribe(
       value => this.loggedIn = value
     );
+    this.getCart();
   }
 
   getCart() {
-    this.getCartSubscription = this.productDetailService.getProductFromCart(2) // !
-      .subscribe((data) => {
-        this.cart = data;
-      });
+    if(this.loggedIn) {
+      this.user = JSON.parse(this.authService.getUser());
+      console.log(this.user)
+      this.getCartSubscription = this.productDetailService.getProductFromCart(this.user.id) // !
+        .subscribe((data) => {
+          this.cart = data;
+        });
+    }
   }
 
   logout() {
-    this.authService.setAuthToken(null);
+    this.authService.removeAuthToken();
+    this.authService.removeUser();
     this.router.navigateByUrl("/login");
   }
 

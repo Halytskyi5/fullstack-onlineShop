@@ -41,7 +41,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
       password: this.password
     };
 
-    this.subscription = this.authService.login(authDto).subscribe({
+    this.authService.login(authDto).subscribe({
       next: response => {
         console.warn(response);
         this.authService.setUser(response);
