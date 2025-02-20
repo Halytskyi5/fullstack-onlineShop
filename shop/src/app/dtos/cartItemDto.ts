@@ -1,7 +1,7 @@
 import {UserDto} from "./userDto";
 
 export interface CartItemDto {
-  id : number;
+  id ?: number;
   productId: number;
   productName: string;
   productImage: string;

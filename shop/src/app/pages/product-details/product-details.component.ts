@@ -1,39 +1,58 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {ProductDto} from "../../dtos/productDto";
 import {CartItemDto} from "../../dtos/cartItemDto";
 import {ActivatedRoute} from "@angular/router";
 import {ProductDetailService} from "../../services/product-detail.service";
 import {Subscription} from "rxjs";
 import {CartService} from "../../services/cart.service";
+import {UserDto} from "../../dtos/userDto";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.scss']
 })
-export class ProductDetailsComponent implements OnInit{
+export class ProductDetailsComponent implements OnInit, OnDestroy{
   constructor(
     private productDetailService: ProductDetailService,
     private route: ActivatedRoute,
-    private cartService : CartService) {
+    private cartService : CartService,
+    private authService : AuthService) {
   }
   product : ProductDto;
   cart : CartItemDto[];
-  cartSubscription : Subscription;
+  user : UserDto;
+  getCartSubscription : Subscription;
+  getProductSubscription : Subscription;
+  postCartSubscription : Subscription;
+
   data : string = "1";
   quantity: number = 1;
+  messageToShow : string = '';
+  showMessage : boolean = false;
+
   ngOnInit() {
+    this.getUser();
     this.getProduct();
-    this.cartSubscription = this.productDetailService.getProductFromCart(2)
-      .subscribe( (data ) => {
-      this.cart = data;
-    })
+    this.getCart();
+  }
+
+  getUser() {
+    this.user = JSON.parse(this.authService.getUser());
   }
   getProduct(): void{
     const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
-    this.productDetailService.getProduct(id).subscribe(product =>{
+    this.getProductSubscription = this.productDetailService.getProduct(id)
+      .subscribe(product =>{
       this.product = product;
     })
+  }
+  getCart() {
+    this.getCartSubscription = this.cartService.getProductFromCart(this.user.id)
+      .subscribe( (data ) => {
+        this.cart = data;
+      })
   }
 
 
@@ -43,48 +62,34 @@ export class ProductDetailsComponent implements OnInit{
   }
   addToCart(product : ProductDto){
     let cartItem : CartItemDto = {
-      id : 0,
       quantity : this.quantity,
       productPrice: product.price,
       productId : product.id,
       productImage : product.image,
       productName: product.name
     };
-    let findItem;
+    this.postToCart(cartItem, this.user.id);
+  }
 
-    if(this.cart.length > 0){
-      findItem = this.cart.find( (item) => item.productId === cartItem.productId);
-      if (findItem){
-        findItem.quantity += cartItem.quantity;
-        this.updateToCart(findItem);
-      }
-      else {
-        this.postToCart(cartItem, 2);
-      }
-    }else {
-      this.postToCart(cartItem, 2);
-    }
-    alert(`Товар ${product.name} кількістю ${cartItem.quantity} шт успішно добавлено в корзину!`)
-  }
   postToCart(product : CartItemDto, userId : number){
-    this.productDetailService.postProductToCart(product ,userId).subscribe( (data) => {
-        this.cart.push(data)
-      }
-    );
+    this.postCartSubscription = this.cartService.postProductToCart(product ,userId).subscribe({
+      next:(data)=> {
+      this.cart.push(data);
+      this.sendCartProducts();
+    }, error: error => {
+        this.messageToShow = error.error;
+        this.showMessage = true;
+    }
+  });
   }
-  updateToCart(cartItem : CartItemDto){
-    this.productDetailService.updateProductToCart(cartItem).subscribe( (data) =>{
-      this.cart.map(val => {
-        if(val.id === data.id) {
-          val.quantity = data.quantity;
-        }
-      })
-    })
-  }
+
   sendCartProducts(){
     this.cartService.sendUpdate(this.cart);
   }
+
   ngOnDestroy(){
-    if(this.cartSubscription) this.cartSubscription.unsubscribe();
+    this.getProductSubscription.unsubscribe();
+    this.getCartSubscription.unsubscribe();
+    if(this.postCartSubscription) this.postCartSubscription.unsubscribe();
   }
 }

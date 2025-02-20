@@ -28,8 +28,9 @@
         <button class="color-box grey"></button>
       </div>
       <input class="quantity-items" type="text" [(ngModel)]="data">
-      <button class="add-to-cart" (click)="parseData(product)" (click)="sendCartProducts()"  type="button">Добавити в корзину</button>
+      <button class="add-to-cart" (click)="parseData(product)" type="button">Добавити в корзину</button>
     </section>
   </main>
 </div>
+<app-slide-down-panel [text]="messageToShow" [isVisible]="showMessage"></app-slide-down-panel>
 <app-footer></app-footer>

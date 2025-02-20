@@ -1,11 +1,12 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ProductDetailService} from "../../services/product-detail.service";
-import {ProductDto} from "../../dtos/productDto";
 import {Subscription} from "rxjs";
 import {CartItemDto} from "../../dtos/cartItemDto";
 import {OrderService} from "../../services/order.service";
 import {CartService} from "../../services/cart.service";
+import {UserDto} from "../../dtos/userDto";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-order',
@@ -14,44 +15,40 @@ import {CartService} from "../../services/cart.service";
 })
 export class OrderComponent implements OnInit, OnDestroy{
   constructor( private productDetailService: ProductDetailService, private orderService : OrderService,
-               private cartService : CartService) { }
+               private cartService : CartService,
+               private authService : AuthService) { }
   cart : CartItemDto[] = [];
-  cartSubscription : Subscription;
+  user : UserDto;
+  getCartSubscription : Subscription;
   totalPrice : number = 0;
   ngOnInit() {
-    this.cartSubscription = this.productDetailService.getProductFromCart(2)
+    this.getUser();
+    this.getCart();
+    this.getTotalPrice();
+  }
+  getUser() {
+    this.user = JSON.parse(this.authService.getUser());
+  }
+  getCart() {
+    this.getCartSubscription = this.cartService.getProductFromCart(this.user.id)
       .subscribe( (data) =>{
         this.cart = data;
       });
-    this.getTotalPrice();
   }
   getTotalPrice(){
-    this.productDetailService.getProductFromCart(2)
-      .subscribe( cartItems =>{
-      this.cart = cartItems;
-      if(this.cart){
-        this.cart.map(item =>{
-          this.totalPrice += item.productPrice * item.quantity;
-        })
-      }
-    })
+    this.getCart();
+    this.totalPrice = 0;
+    if(this.cart){
+      this.cart.map(item =>{
+        this.totalPrice += item.productPrice * item.quantity;
+      })
+    }
   }
   postOrder() {
     this.orderService.addOrder(2).subscribe(data => console.log(data));
     this.getTotalPrice();
     this.cartService.sendUpdate(this.cart);
   }
-/*  removeAllProductsFromCart(cart : CartItemDto[]){
-    for (let product of cart){
-      this.removeProductFromCart(product);
-    }
-  }
-  removeProductFromCart(product : CartItemDto){
-    this.productDetailService.removeProductFromCart(product.id).subscribe( () =>{
-      let idx = this.cart.findIndex( (data) => data.id === product.id);
-      this.cart.splice(idx, 1);
-    })
-  }*/
 
   dataUserForm : FormGroup = new FormGroup({
     userName : new FormControl("", Validators.required),
@@ -66,6 +63,6 @@ export class OrderComponent implements OnInit, OnDestroy{
     userApartment : new FormControl("", [Validators.required, Validators.pattern("[0-9]{1,3}")])
   })
   ngOnDestroy(){
-    if(this.cartSubscription) this.cartSubscription.unsubscribe();
+    this.getCartSubscription.unsubscribe();
   }
 }

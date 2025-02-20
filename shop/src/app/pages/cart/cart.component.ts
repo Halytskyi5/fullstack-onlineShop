@@ -58,7 +58,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
 
   removeProductFromCart(item: CartItemDto) {
-    this.removeProductsSubscription = this.cartService.removeProductFromCart(item.id).subscribe((data) => {
+    this.removeProductsSubscription = this.cartService.removeProductFromCart(<number>item.id).subscribe((data) => {
       this.getProducts();
       this.cartService.sendUpdate(this.cart);
     })
