@@ -43,7 +43,6 @@ export class LoginPageComponent implements OnInit, OnDestroy {
 
     this.authService.login(authDto).subscribe({
       next: response => {
-        console.warn(response);
         this.authService.setUser(response);
         this.authService.setAuthToken(response.token);
         this.router.navigateByUrl('');

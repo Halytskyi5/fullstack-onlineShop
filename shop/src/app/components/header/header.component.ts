@@ -23,7 +23,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   user : UserDto;
 
   constructor(
-    private productDetailService: ProductDetailService,
     private cartService: CartService,
     private authService: AuthService,
     private router : Router
@@ -37,14 +36,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authService.loggedIn$().subscribe(
       value => this.loggedIn = value
     );
+    this.getUser();
     this.getCart();
+  }
+  getUser() {
+    if (this.loggedIn) {
+      this.user = JSON.parse(this.authService.getUser());
+    }
   }
 
   getCart() {
     if(this.loggedIn) {
-      this.user = JSON.parse(this.authService.getUser());
-      console.log(this.user)
-      this.getCartSubscription = this.productDetailService.getProductFromCart(this.user.id) // !
+      this.getCartSubscription = this.cartService.getProductFromCart(this.user.id)
         .subscribe((data) => {
           this.cart = data;
         });
