@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {AuthDto} from "../../dtos/authDto";
 import {AuthService} from "../../services/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register-page',
@@ -13,24 +14,27 @@ export class RegisterPageComponent {
   password: string = '';
   confirmPassword: string = '';
   errorMessage: string = '';
-  private authDto : AuthDto;
-  constructor(private authService : AuthService) {
+  constructor(private authService : AuthService, private router : Router) {
   }
 
   onSubmit() {
-    // Simulate registration logic
     if (this.password !== this.confirmPassword) {
-      this.errorMessage = 'Passwords do not match';
+      this.errorMessage = 'Паролі не співпадають!';
       return;
     }
-    this.authDto = {
+    let authDto : AuthDto = {
       username : this.username,
       password : this.password
     };
-
-    // Simulate successful registration
+    this.authService.register(authDto).subscribe({
+      next: val => {
+      this.authService.setUser(val);
+      this.authService.setAuthToken(val.token);
+      this.router.navigateByUrl('');
+    }, error: err => {
+        this.errorMessage = 'Користувач з таким логіном вже існує!';
+      }
+    });
     this.errorMessage = '';
-    alert('Registration successful!');
-    // Redirect or perform other actions here
   }
 }

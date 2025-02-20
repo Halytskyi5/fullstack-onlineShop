@@ -1,4 +1,4 @@
-import {Component, OnDestroy} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
 import {AuthDto} from "../../dtos/authDto";
@@ -9,16 +9,34 @@ import {catchError, interval, map, of, Subscription} from "rxjs";
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss']
 })
-export class LoginPageComponent implements OnDestroy {
+export class LoginPageComponent implements OnInit, OnDestroy {
   username: string = '';
   password: string = '';
+  subscription: Subscription;
   messageToShow: string = '';
-  constructor(private authService : AuthService, private router : Router) {
+  isVisiblePanel: boolean = false;
+  textPanel: string = '';
+
+  constructor(private authService: AuthService, private router: Router) {
+    this.showPanel();
   }
-  subscription : Subscription;
+
+  ngOnInit() {
+
+  }
+
+  showPanel() {
+    const navigation = this.router.getCurrentNavigation();
+    this.textPanel = navigation?.extras.state?.['text'] || '';
+    this.isVisiblePanel = navigation?.extras.state?.['showPanel'] || false;
+    this.router.navigate([], {
+      replaceUrl: true,
+      state: {}
+    });
+  }
 
   onSubmit() {
-    let authDto : AuthDto = {
+    let authDto: AuthDto = {
       username: this.username,
       password: this.password
     };
@@ -32,13 +50,11 @@ export class LoginPageComponent implements OnDestroy {
       },
       error: err => {
         this.messageToShow = 'error';
-      }, complete: () => {
-        this.subscription.unsubscribe();
-        console.log('end');
       }
     });
 
   }
+
   ngOnDestroy(): void {
     if (this.subscription) {
       this.subscription.unsubscribe();

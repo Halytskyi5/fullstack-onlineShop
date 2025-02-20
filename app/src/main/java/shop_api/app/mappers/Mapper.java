@@ -16,8 +16,10 @@ public class Mapper {
         userDto.setId(user.getId());
         userDto.setUsername(user.getUsername());
         List<CartItemDto> items = new ArrayList<>();
-        for (CartItemEntity cartItem : user.getItemsInCart()) {
-            items.add(Mapper.toCartDto(cartItem));
+        if(user.getItemsInCart() != null) {
+            for (CartItemEntity cartItem : user.getItemsInCart()) {
+                items.add(Mapper.toCartDto(cartItem));
+            }
         }
         userDto.setItemsInCart(items);
         return userDto;

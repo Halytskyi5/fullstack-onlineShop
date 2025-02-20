@@ -1,31 +1,37 @@
+<app-header></app-header>
+<app-slide-down-panel [isVisible]="isVisiblePanel" [text]="textPanel"></app-slide-down-panel>
 <div class="login-container">
-  <h2>Login</h2>
+  <h2>Авторизація</h2>
   <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
     <div class="form-group">
-      <label for="username">Username</label>
+      <label for="username">Логін</label>
       <input
         type="text"
         id="username"
         name="username"
         [(ngModel)]="username"
         required
-        placeholder="Enter your username"
+        placeholder="Уведіть логін"
       />
     </div>
     <div class="form-group">
-      <label for="password">Password</label>
+      <label for="password">Пароль</label>
       <input
         type="password"
         id="password"
         name="password"
         [(ngModel)]="password"
         required
-        placeholder="Enter your password"
+        placeholder="Уведіть пароль"
       />
     </div>
-    <button type="submit" [disabled]="!loginForm.form.valid">Login</button>
+    <button type="submit" class="btn-login" [disabled]="!loginForm.form.valid">Авторизуватись</button>
   </form>
+  <a routerLink="/register">
+    <button type="submit" class="btn-register">У мене немає акаунту! Зареєструватись</button>
+  </a>
   <div *ngIf="messageToShow" class="error-message">
-    Invalid username or password!
+    Некоректний логін або пароль!
   </div>
 </div>
+<app-footer></app-footer>

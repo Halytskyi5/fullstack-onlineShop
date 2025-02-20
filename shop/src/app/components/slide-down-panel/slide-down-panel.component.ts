@@ -8,12 +8,8 @@ import {Router} from "@angular/router";
 })
 export class SlideDownPanelComponent {
   @Input() isVisible: boolean = false;
-  router = inject(Router);
-  onRegister() {
-    this.router.navigateByUrl('/register')
-  }
-
-  onLogin() {
-    this.router.navigateByUrl('/login')
+  @Input() text : string = '';
+  hidePanel() {
+    this.isVisible = false;
   }
 }

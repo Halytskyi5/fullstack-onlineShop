@@ -7,7 +7,19 @@ export const authGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
   const router = inject(Router);
   return authService.loggedIn$().pipe(
-    map(val =>
-    val ? true : router.parseUrl('/login'))
+    map((val: boolean) => {
+      if (val) {
+        return true;
+      } else {
+        router.navigate(['/login'],
+          {
+            state: {
+              text: 'Для виконання цієї дії потрібно авторизуватись!',
+              showPanel: true
+            }
+          });
+        return false;
+      }
+    })
   );
 };

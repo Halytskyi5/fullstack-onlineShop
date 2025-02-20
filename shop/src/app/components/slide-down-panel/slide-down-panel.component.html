@@ -1,9 +1,8 @@
 <div class="slide-down-panel" [class.visible]="isVisible">
   <div class="content">
-    <p>Для цієї дії потрібно авторизуватись!</p>
+    <p>{{text}}</p>
   </div>
   <div class="buttons">
-    <button class="auth-button login" (click)="onLogin()">Login</button>
-    <button class="auth-button register" (click)="onRegister()">Register</button>
+    <button class="auth-button register" (click)="hidePanel()" >Гаразд</button>
   </div>
 </div>
