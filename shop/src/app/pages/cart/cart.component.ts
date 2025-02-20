@@ -6,71 +6,73 @@ import {ProductDetailService} from "../../services/product-detail.service";
 import {CartService} from "../../services/cart.service";
 import {UserDto} from "../../dtos/userDto";
 import {UserService} from "../../services/user.service";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
-export class CartComponent implements OnInit, OnDestroy{
+export class CartComponent implements OnInit, OnDestroy {
   constructor(
-    private productDetailService: ProductDetailService,
-    private cartService : CartService,
-    private userService : UserService
-  ) {  }
-  cart : CartItemDto[] = [];
-  user : UserDto;
-  getCartSubscription : Subscription;
-  cartUpdateSubscription : Subscription;
-  totalPrice : number = 0;
+    private cartService: CartService,
+    private authService: AuthService
+  ) {
+  }
+
+  cart: CartItemDto[] = [];
+  user: UserDto;
+  getCartSubscription: Subscription;
+  cartUpdateSubscription: Subscription;
+  removeProductsSubscription : Subscription;
+  totalPrice: number = 0;
 
   ngOnInit() {
     this.initializeUserAndProducts();
-    this.cartUpdateSubscription = this.cartService.getUpdate().subscribe( res => {
+    this.cartUpdateSubscription = this.cartService.getUpdate().subscribe(res => {
       this.getProducts()
     })
   }
 
   initializeUserAndProducts() {
-    this.userService.getUser(2).subscribe(
-      user => {
-        this.user = user;
-        this.getProducts();
-      }
-    );
+    this.user = JSON.parse(this.authService.getUser());
+    this.getProducts();
   }
 
   getProducts() {
-    this.getCartSubscription = this.productDetailService.getProductFromCart(2)
-      .subscribe( (data) =>{
+    this.getCartSubscription = this.cartService.getProductFromCart(this.user.id)
+      .subscribe((data) => {
         this.cart = data;
         this.getTotalPrice();
       });
-
   }
 
-  getTotalPrice(){
-      if(this.cart){
-        this.totalPrice = 0;
-        this.cart.map(item =>{
-          this.totalPrice += item.productPrice * item.quantity;
-        })
-      }
+  getTotalPrice() {
+    if (this.cart) {
+      this.totalPrice = 0;
+      this.cart.map(item => {
+        this.totalPrice += item.productPrice * item.quantity;
+      })
+    }
   }
 
 
-  removeProductFromCart(item : CartItemDto){
-    this.productDetailService.removeProductFromCart(item.id).subscribe( (data) =>{
+  removeProductFromCart(item: CartItemDto) {
+    this.removeProductsSubscription = this.cartService.removeProductFromCart(item.id).subscribe((data) => {
       this.getProducts();
-      this.sendCartProducts();
+      this.cartService.sendUpdate(this.cart);
     })
   }
-
-  sendCartProducts(){
-    this.cartService.sendUpdate(this.cart);
+  unsubscribe(sub : Subscription[]) {
+    sub.map(subscription => {
+      if (subscription) {
+        subscription.unsubscribe();
+      }
+    });
   }
-  ngOnDestroy(){
-    if(this.getCartSubscription) this.getCartSubscription.unsubscribe();
+
+  ngOnDestroy() {
     this.cartUpdateSubscription.unsubscribe();
+    this.unsubscribe([this.getCartSubscription, this.removeProductsSubscription]);
   }
 }

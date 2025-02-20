@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductDto} from "../../dtos/productDto";
-import {ShopServiceService} from "../../services/shop-service.service";
+import {ProductDetailService} from "../../services/product-detail.service";
 
 @Component({
   selector: 'app-shop',
@@ -9,14 +9,14 @@ import {ShopServiceService} from "../../services/shop-service.service";
 })
 export class ShopComponent implements OnInit{
   products: ProductDto[];
+  constructor(public productService : ProductDetailService) {
+  }
   ngOnInit() {
     this.getProducts();
   }
   getProducts(){
-    this.shopService.getProducts().subscribe(res => {
+    this.productService.getProducts().subscribe(res => {
       this.products = res;
     });
-  }
-  constructor(public shopService : ShopServiceService) {
   }
 }
