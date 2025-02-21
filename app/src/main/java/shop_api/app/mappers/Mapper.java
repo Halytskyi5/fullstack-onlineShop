@@ -15,6 +15,7 @@ public class Mapper {
         UserDto userDto = new UserDto();
         userDto.setId(user.getId());
         userDto.setUsername(user.getUsername());
+        userDto.setRoles(user.getRoles());
         List<CartItemDto> items = new ArrayList<>();
         if(user.getItemsInCart() != null) {
             for (CartItemEntity cartItem : user.getItemsInCart()) {

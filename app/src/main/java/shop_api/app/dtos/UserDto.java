@@ -7,6 +7,7 @@ public class UserDto {
     private Long id;
     private String username;
     private String token;
+    private String roles;
     private List<CartItemDto> itemsInCart;
 
     public UserDto() {
@@ -42,5 +43,13 @@ public class UserDto {
 
     public void setItemsInCart(List<CartItemDto> itemsInCart) {
         this.itemsInCart = itemsInCart;
+    }
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 }

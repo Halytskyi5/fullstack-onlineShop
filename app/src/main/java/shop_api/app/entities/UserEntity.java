@@ -18,6 +18,8 @@ public class UserEntity {
     @Column(nullable = false)
     private String password;
 
+    private String roles = "";
+
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     @JsonIgnoreProperties({"user", "order"})
     private List<CartItemEntity> itemsInCart;
@@ -67,5 +69,13 @@ public class UserEntity {
 
     public void setOrders(List<OrderEntity> orders) {
         this.orders = orders;
+    }
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 }
