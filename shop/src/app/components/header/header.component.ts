@@ -3,7 +3,7 @@ import {AppModule} from "../../app.module";
 import {ProductDetailService} from "../../services/product-detail.service";
 import {ProductDto} from "../../dtos/productDto";
 import {CartItemDto} from "../../dtos/cartItemDto";
-import {map, Subscription} from "rxjs";
+import {find, map, Subscription} from "rxjs";
 import {CartService} from "../../services/cart.service";
 import {UserDto} from "../../dtos/userDto";
 import {AuthService} from "../../services/auth.service";
@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private getCartSubscription: Subscription;
   private cartUpdateSubscription: Subscription;
   loggedIn: boolean = false;
+  isAdmin : boolean = false;
   user : UserDto;
 
   constructor(
@@ -42,6 +43,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
   getUser() {
     if (this.loggedIn) {
       this.user = JSON.parse(this.authService.getUser());
+
+      let roles = this.user.roles.split(" ");
+      for(const role of  roles) {
+        if (role === "ADMIN") {
+          this.isAdmin = true;
+          break;
+        }
+      }
     }
   }
 

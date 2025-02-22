@@ -25,6 +25,7 @@ import { TestComponent } from './test/test.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { SlideDownPanelComponent } from './components/slide-down-panel/slide-down-panel.component';
+import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { SlideDownPanelComponent } from './components/slide-down-panel/slide-dow
     TestComponent,
     LoginPageComponent,
     RegisterPageComponent,
-    SlideDownPanelComponent
+    SlideDownPanelComponent,
+    AdminPageComponent
   ],
   imports: [
     BrowserModule,
