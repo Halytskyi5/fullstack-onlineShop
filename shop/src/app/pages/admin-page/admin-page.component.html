@@ -33,24 +33,28 @@
     <h1>{{showContent.toUpperCase()}}</h1>
     <div *ngIf="products$ | async as products" class="list-items">
       <div class="line-items">
-        <div class="edit-col"><p></p></div>
-        <div class="item"><p>№</p></div>
-        <div class="item"><p>name</p></div>
-        <div class="item"><p>price</p></div>
-        <div class="item"><p>available quantity</p></div>
-        <div class="item"><p>image</p></div>
+
+        <div class="edit-col"><p>№</p></div>
+        <div class="item"><p>Назва товару</p></div>
+        <div class="item"><p>Ціна</p></div>
+        <div class="item"><p>Доступна кількість</p></div>
+        <div class="item"><p>Фото</p></div>
+        <div class="edit-col"><p>Змінити</p></div>
       </div>
       <div *ngFor="let pr of products; let i = index" class="line-items">
-        <div class="edit-col">
-          <p>
-            <mat-icon>edit</mat-icon>
-          </p>
-        </div>
-        <div class="item"><p>{{i + 1}}</p></div>
+
+        <div class="edit-col"><p>{{i + 1}}</p></div>
         <div class="item"><p>{{pr.name}}</p></div>
         <div class="item"><p>{{pr.price}}</p></div>
         <div class="item"><p>{{pr.availableQuantity}}</p></div>
         <div class="item"><img src="../../../assets/images/clothes/{{pr.image}}" alt=""></div>
+        <div class="edit-col">
+          <a routerLink="/edit-product-details/{{pr.id}}">
+          <p>
+            <mat-icon>edit</mat-icon>
+          </p>
+          </a>
+        </div>
       </div>
     </div>
   </main>
@@ -60,16 +64,16 @@
     <h1>{{showContent.toUpperCase()}}</h1>
     <div *ngIf="users$ | async as users" class="list-items">
       <div class="line-items">
-        <div class="item"><p>№</p></div>
+        <div class="edit-col"><p>№</p></div>
         <div class="item"><p>Логін</p></div>
-        <div class="item"><p>Ролі</p></div>
-        <div class="edit-col">d</div>
+        <div class="item roles-col"><p>Ролі</p></div>
+        <div class="item"><p>Змінити</p></div>
       </div>
       <div *ngFor="let currentUser of users; let i = index" class="line-items">
-        <div class="item"><p>{{i + 1}}</p></div>
+        <div class="edit-col"><p>{{i + 1}}</p></div>
         <div class="item"><p>{{currentUser.username}}</p></div>
-        <div class="item"><p>{{currentUser.roles}}</p></div>
-        <div class="edit-col">Зробити адміністратором</div>
+        <div class="item roles-col"><p>{{currentUser.roles}}</p></div>
+        <div class="item"><p>Зробити адміністратором</p></div>
       </div>
     </div>
   </main>

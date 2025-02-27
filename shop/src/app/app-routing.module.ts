@@ -14,6 +14,7 @@ import {LoginPageComponent} from "./pages/login-page/login-page.component";
 import {RegisterPageComponent} from "./pages/register-page/register-page.component";
 import {authGuard} from "./services/auth.guard";
 import {AdminPageComponent} from "./pages/admin-page/admin-page.component";
+import {EditProductDetailsComponent} from "./components/edit-product-details/edit-product-details.component";
 
 const routes: Routes = [
   {
@@ -59,6 +60,10 @@ const routes: Routes = [
   {path: 'register', component: RegisterPageComponent},
   {
     path: 'admin', component: AdminPageComponent
+  },
+  {
+    path: 'edit-product-details/:id',
+    component: EditProductDetailsComponent
   }
 ];
 

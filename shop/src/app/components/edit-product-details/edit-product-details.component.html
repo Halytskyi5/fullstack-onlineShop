@@ -1,0 +1,23 @@
+<div class="container" *ngIf="product">
+  <h1 class="product-title">{{product.name}}</h1>
+  <main class="product-detail">
+    <section class="product-image-container">
+      <img class="product-image" src="../../../assets/images/clothes/{{product.image}}">
+    </section>
+    <section class="product-property">
+      <div class="input-value">
+        <p class="text">Назва товару</p>
+        <input type="text" [(ngModel)]="name">
+      </div>
+      <div class="input-value">
+        <p class="text">Ціна</p>
+        <input type="text" [(ngModel)]="price">
+      </div>
+      <div class="input-value">
+        <p class="text">Доступна кількість</p>
+        <input type="text" [(ngModel)]="availableQuantity">
+      </div>
+      <button class="add-to-cart" type="button">Зберегти характеристики</button>
+    </section>
+  </main>
+</div>

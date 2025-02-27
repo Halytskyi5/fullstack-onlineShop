@@ -26,6 +26,8 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { SlideDownPanelComponent } from './components/slide-down-panel/slide-down-panel.component';
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
+import { EditProductDetailsComponent } from './components/edit-product-details/edit-product-details.component';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import { AdminPageComponent } from './pages/admin-page/admin-page.component';
     LoginPageComponent,
     RegisterPageComponent,
     SlideDownPanelComponent,
-    AdminPageComponent
+    AdminPageComponent,
+    EditProductDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,8 @@ import { AdminPageComponent } from './pages/admin-page/admin-page.component';
     MatIconModule,
     MatBadgeModule,
     ReactiveFormsModule,
-    MatRadioModule
+    MatRadioModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
