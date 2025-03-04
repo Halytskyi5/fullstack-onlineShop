@@ -47,4 +47,10 @@ public class UserAuthProvider {
         user.setUsername(decoded.getIssuer());
         return new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
     }
+
+    public static String getUserIdByToken(String token) {
+        String jwt = token.replace("Bearer ", "");
+        String userID = JWT.decode(jwt).getIssuer();
+        return userID;
+    }
 }
