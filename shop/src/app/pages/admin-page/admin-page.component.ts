@@ -41,4 +41,16 @@ export class AdminPageComponent implements OnInit{
     });
   }
 
+  assignAdmin(user : UserDto) {
+    let newUser: UserDto = user;
+    newUser.roles = "ADMIN";
+    this.service.putUser(newUser, this.admin.id).subscribe(val => console.log("from backend"));
+  }
+
+  deleteAdmin(user : UserDto) {
+    let newUser: UserDto = user;
+    newUser.roles = "";
+    this.service.putUser(newUser, this.admin.id).subscribe(val => console.log("from backend"));
+  }
+
 }

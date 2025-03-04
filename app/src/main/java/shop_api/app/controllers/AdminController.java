@@ -2,10 +2,7 @@ package shop_api.app.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import shop_api.app.dtos.UserDto;
 import shop_api.app.entities.ProductEntity;
 import shop_api.app.services.AdminService;
@@ -32,6 +29,11 @@ public class AdminController {
     @GetMapping("/products")
     public ResponseEntity<List<ProductEntity>> getProducts(@RequestParam("admin_id") Long id) {
         return ResponseEntity.ok(this.service.getProducts(id));
+    }
+
+    @PutMapping("/edit-user")
+    public ResponseEntity<UserDto> editRoles(@RequestParam("admin_id") Long id, @RequestBody UserDto user) {
+        return ResponseEntity.ok(this.service.editRoles(user, id));
     }
 
 }

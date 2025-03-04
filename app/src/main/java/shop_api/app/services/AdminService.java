@@ -13,6 +13,7 @@ import shop_api.app.repositories.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AdminService {
@@ -44,6 +45,17 @@ public class AdminService {
         if (this.authenticateAdmin(id)) {
             List<ProductEntity> products = this.productRepository.findAll();
             return products;
+        }
+        throw new AppException("Access denied!", HttpStatus.FORBIDDEN);
+    }
+
+    public UserDto editRoles(UserDto userDto, Long id) {
+        if (this.authenticateAdmin(id)) {
+            UserEntity user = this.userRepository.findByUsername(userDto.getUsername())
+                    .orElseThrow(() -> new AppException("Unknown user", HttpStatus.NOT_FOUND));
+            user.setRoles(userDto.getRoles());
+            UserEntity savedUser = this.userRepository.save(user);
+            return Mapper.toUserDto(savedUser);
         }
         throw new AppException("Access denied!", HttpStatus.FORBIDDEN);
     }

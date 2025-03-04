@@ -73,7 +73,8 @@
         <div class="edit-col"><p>{{i + 1}}</p></div>
         <div class="item"><p>{{currentUser.username}}</p></div>
         <div class="item roles-col"><p>{{currentUser.roles}}</p></div>
-        <div class="item"><p>Зробити адміністратором</p></div>
+        <div *ngIf="currentUser.roles !== 'ADMIN'" (click)="assignAdmin(currentUser)" class="item method"><p>Зробити адміністратором</p></div>
+        <div *ngIf="currentUser.roles === 'ADMIN'" (click)="deleteAdmin(currentUser)" class="item method"><p>Видалити адміністратора</p></div>
       </div>
     </div>
   </main>
