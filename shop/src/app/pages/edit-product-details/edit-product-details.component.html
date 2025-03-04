@@ -17,7 +17,7 @@
         <p class="text">Доступна кількість</p>
         <input type="text" [(ngModel)]="availableQuantity">
       </div>
-      <button class="add-to-cart" type="button">Зберегти характеристики</button>
+      <button (click)="saveProduct()" class="add-to-cart" type="button">Зберегти характеристики</button>
     </section>
   </main>
 </div>

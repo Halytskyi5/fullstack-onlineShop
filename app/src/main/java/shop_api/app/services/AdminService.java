@@ -60,6 +60,16 @@ public class AdminService {
         throw new AppException("Access denied!", HttpStatus.FORBIDDEN);
     }
 
+    public ProductEntity editProduct(ProductEntity product, Long id) {
+        if (this.authenticateAdmin(id)) {
+            ProductEntity productEntity = this.productRepository.findById(product.getId())
+                    .orElseThrow(() -> new AppException("Unknown product", HttpStatus.NOT_FOUND));
+            ProductEntity savedProduct = this.productRepository.save(product);
+            return savedProduct;
+        }
+        throw new AppException("Access denied!", HttpStatus.FORBIDDEN);
+    }
+
     private Boolean authenticateAdmin(Long id) {
         UserEntity user = this.userRepository.findById(id)
                 .orElseThrow(() -> new AppException("Unknown user", HttpStatus.NOT_FOUND));

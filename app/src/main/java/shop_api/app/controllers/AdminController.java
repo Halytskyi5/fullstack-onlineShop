@@ -36,4 +36,9 @@ public class AdminController {
         return ResponseEntity.ok(this.service.editRoles(user, id));
     }
 
+    @PutMapping("/edit-product")
+    public ResponseEntity<ProductEntity> editProduct(@RequestParam("admin_id") Long id, @RequestBody ProductEntity product) {
+        return ResponseEntity.ok(this.service.editProduct(product, id));
+    }
+
 }

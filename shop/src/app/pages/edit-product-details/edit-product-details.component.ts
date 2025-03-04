@@ -4,6 +4,7 @@ import {AuthService} from "../../services/auth.service";
 import {UserDto} from "../../dtos/userDto";
 import {ActivatedRoute} from "@angular/router";
 import {ProductDetailService} from "../../services/product-detail.service";
+import {AdminService} from "../../services/admin.service";
 
 @Component({
   selector: 'app-edit-product-details',
@@ -18,6 +19,7 @@ export class EditProductDetailsComponent implements OnInit {
   availableQuantity: number;
 
   constructor(private authService: AuthService,
+              private service : AdminService,
               private route: ActivatedRoute,
               private productDetailService: ProductDetailService) {
   }
@@ -41,6 +43,13 @@ export class EditProductDetailsComponent implements OnInit {
         this.availableQuantity = product.availableQuantity;
       });
 
+  }
+
+  saveProduct() {
+    this.product.price = this.price;
+    this.product.availableQuantity = this.availableQuantity;
+    this.product.name = this.name;
+    this.service.putProduct(this.product).subscribe(value => console.warn('from backend'));
   }
 
 }

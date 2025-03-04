@@ -23,6 +23,11 @@ export class AdminService {
 
   putUser(user : UserDto, id : number) {
     return this.http.put<UserDto>(`${this.adminUrl}/edit-user?admin_id=${id}`,user,
-      {headers: this.authService.getHeaders()})
+      {headers: this.authService.getHeaders()});
+  }
+
+  putProduct(product : ProductDto) {
+    return this.http.put<ProductDto>(`${this.adminUrl}/edit-product?admin_id=${0}`,product,
+      {headers: this.authService.getHeaders()});
   }
 }
